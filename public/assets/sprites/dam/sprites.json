@@ -1,0 +1,30 @@
+{
+ "frameSizePx": 256,
+ "fps": 12,
+ "dirs": [
+  "S",
+  "SW",
+  "W",
+  "NW",
+  "N",
+  "NE",
+  "E",
+  "SE"
+ ],
+ "dirDeg": [
+  0,
+  45,
+  90,
+  135,
+  180,
+  225,
+  270,
+  315
+ ],
+ "frames": {
+  "idle": 1,
+  "walk": 16
+ },
+ "worldSizeM": 0.3488,
+ "centerYM": 0.157
+}

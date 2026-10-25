@@ -1,0 +1,236 @@
+{
+  "app": {
+    "title": "Cat Showroom",
+    "loading": "Loading cat..."
+  },
+  "clip": {
+    "idle": "Idle",
+    "sit": "Sit",
+    "lie": "Lie",
+    "lie_down": "Lie down",
+    "walk": "Walk",
+    "trot": "Trot",
+    "run": "Run",
+    "sniff": "Sniff",
+    "wag": "Tail wag",
+    "alarm": "Alarmed",
+    "jump_up": "Jump"
+  },
+  "face": {
+    "grumpy": "Grumpy",
+    "relaxed": "Relaxed",
+    "normal": "Normal",
+    "smile": "Smile (eyes closed)",
+    "happy": "Happy",
+    "sad": "Sad",
+    "wink": "Wink",
+    "sleepy": "Sleepy"
+  },
+  "view": {
+    "3d": "Mui 3D",
+    "25d": "Mui 2.5D",
+    "som": "Som 2.5D",
+    "som3d": "Som 3D",
+    "dam": "Dam 2.5D"
+  },
+  "ui": {
+    "current": "Current clip",
+    "paused": "Paused",
+    "clipBar": "Choose clip",
+    "helpHint": "Press H to show/hide shortcuts",
+    "faceBar": "Choose face",
+    "viewBar": "Choose cat"
+  },
+  "help": {
+    "title": "Shortcuts",
+    "rows": [
+      {
+        "keys": "Left-drag / one finger",
+        "text": "Orbit camera"
+      },
+      {
+        "keys": "Wheel / pinch",
+        "text": "Zoom"
+      },
+      {
+        "keys": "[  ]  or  ←  →",
+        "text": "Previous / next clip"
+      },
+      {
+        "keys": "1 – 9, 0",
+        "text": "Clip 1 – 10"
+      },
+      {
+        "keys": "Space",
+        "text": "Pause / play"
+      },
+      {
+        "keys": "G",
+        "text": "Toggle 10 cm grid"
+      },
+      {
+        "keys": "F1",
+        "text": "Tuning panel"
+      },
+      {
+        "keys": "R",
+        "text": "Reset camera"
+      },
+      {
+        "keys": "F",
+        "text": "Switch face of the cat shown (Mui: grumpy / relaxed · Som: 6 faces)"
+      },
+      {
+        "keys": "V",
+        "text": "Switch Mui 3D / Mui 2.5D / Som 2.5D / Som 3D / Dam"
+      },
+      {
+        "keys": "W A S D / left stick",
+        "text": "Walk Mui (camera-relative)"
+      },
+      {
+        "keys": "Shift / hold B",
+        "text": "Run"
+      },
+      {
+        "keys": "H",
+        "text": "Toggle this help"
+      },
+      {
+        "keys": "Pad: LB / RB",
+        "text": "Previous / next clip"
+      },
+      {
+        "keys": "Pad: right stick",
+        "text": "Orbit camera"
+      },
+      {
+        "keys": "Pad: LT / RT",
+        "text": "Zoom out / in"
+      },
+      {
+        "keys": "Pad: A",
+        "text": "Pause / play"
+      }
+    ]
+  },
+  "tune": {
+    "title": "Showroom tuning (F1)",
+    "copy": "Copy values as JSON",
+    "copied": "Copied — paste over config/catShowroom.json",
+    "copyFailed": "Copy failed (browser denied)",
+    "group": {
+      "light": "Light",
+      "shadow": "Shadow",
+      "sky": "Sky",
+      "floor": "Floor",
+      "grid": "Grid",
+      "camera": "Camera",
+      "anim": "Animation",
+      "blink": "Blink",
+      "walk": "Walking",
+      "sprite": "2.5D sprite",
+      "render": "Rendering",
+      "fallback": "Fallback capsule",
+      "ui": "Messages"
+    },
+    "param": {
+      "light": {
+        "exposure": "Exposure",
+        "envIntensity": "Environment intensity",
+        "hemiIntensity": "Hemisphere intensity",
+        "hemiSkyColor": "Hemisphere sky color",
+        "hemiGroundColor": "Hemisphere ground color",
+        "sunIntensity": "Sun intensity",
+        "sunColor": "Sun color",
+        "sunAzimuthDeg": "Sun azimuth (deg)",
+        "sunElevationDeg": "Sun elevation (deg)",
+        "sunDistanceM": "Sun distance (m)"
+      },
+      "shadow": {
+        "mapSize": "Shadow map size",
+        "frustumHalfM": "Shadow extent (m)",
+        "near": "Shadow near (m)",
+        "far": "Shadow far (m)",
+        "bias": "Shadow bias",
+        "normalBias": "Shadow normal bias",
+        "radius": "Shadow softness"
+      },
+      "sky": {
+        "topColor": "Sky top color",
+        "horizonColor": "Sky horizon color"
+      },
+      "floor": {
+        "color": "Floor color",
+        "roughness": "Floor roughness",
+        "sizeM": "Floor size (m)"
+      },
+      "grid": {
+        "cellM": "Grid cell (m)",
+        "sizeM": "Grid size (m)",
+        "color": "Grid color",
+        "opacity": "Grid opacity",
+        "liftM": "Grid lift (m)"
+      },
+      "camera": {
+        "fovDeg": "Field of view (deg)",
+        "near": "Near plane (m)",
+        "far": "Far plane (m)",
+        "targetHeightM": "Target height (m)",
+        "yawStartDeg": "Start yaw (deg)",
+        "pitchStartDeg": "Start pitch (deg)",
+        "distStartM": "Start distance (m)",
+        "pitchMinDeg": "Min pitch (deg)",
+        "pitchMaxDeg": "Max pitch (deg)",
+        "zoomMinM": "Min distance (m)",
+        "zoomMaxM": "Max distance (m)",
+        "zoomStep": "Zoom step per wheel notch",
+        "dragDegPerPx": "Degrees per dragged pixel",
+        "padRotateDegPerS": "Pad rotate speed (deg/s)",
+        "padZoomStepsPerS": "Pad zoom speed (steps/s)",
+        "padDeadzone": "Pad deadzone",
+        "maxDtS": "Max frame time (s)"
+      },
+      "anim": {
+        "crossfadeS": "Crossfade time (s)",
+        "speed": "Playback speed"
+      },
+      "blink": {
+        "intervalMinS": "Min interval (s)",
+        "intervalMaxS": "Max interval (s)",
+        "closedS": "Closed duration (s)",
+        "doubleChance": "Double-blink chance",
+        "doubleGapRatio": "Double-blink gap (× closed duration)"
+      },
+      "render": {
+        "pixelRatioMax": "Max pixel ratio",
+        "lowPixelRatio": "Low-quality pixel ratio"
+      },
+      "fallback": {
+        "heightM": "Capsule height (m)",
+        "radiusM": "Capsule radius (m)",
+        "color": "Capsule color"
+      },
+      "ui": {
+        "toastS": "Toast duration (s)"
+      },
+      "sprite": {
+        "sizeMul": "Sprite size (x)"
+      },
+      "walk": {
+        "walkMps": "Walk speed (m/s)",
+        "runMps": "Run speed (m/s)",
+        "turnDegPerS": "Turn speed (deg/s)",
+        "areaRadiusM": "Walkable radius (m)",
+        "minInput": "Min input to start walking"
+      }
+    }
+  },
+  "error": {
+    "glbMissing": "Could not load cat.glb, showing a capsule instead. Build it with: {cmd}",
+    "clipMissing": "Clip \"{clip}\" not found in the model",
+    "noWebgl": "WebGL is not available in this browser",
+    "faceMissing": "No skin image for face {face} · build it with build_quad_meshy.py (bake.alts)",
+    "viewMissing": "No sprites for this view · Mui: sprite_render.py + mui_sprites.py · Som/Dam: tools/ai3d/sprite_from_sheet.py"
+  }
+}

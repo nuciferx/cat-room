@@ -1,0 +1,93 @@
+{
+ "_note": "ภาพ 2.5D ของมุ่ยจากโมเดล 3D (sprite_render.py) : เรนเดอร์ทุกท่า × 8 ทิศ พื้นโปร่งใส → ชุดภาพให้ Krita (File > Import Animation Frames) + แผ่นรวม (sprite_sheet.py)",
+ "model": "public/assets/models/cat/cat.glb",
+ "outDir": "shots/tmp.temp/cat_sprites",
+ "sizePx": 256,
+ "_renderPx": "Blender เรนเดอร์ใหญ่แล้ว Krita ย่อเป็น sizePx (เส้นขอบเนียน)",
+ "renderPx": 512,
+ "fps": 12,
+ "_srcFps": "fps ของฉากตอนนำเข้า glb (ใช้แปลงเวลาเป็นเฟรม · ค่าใดก็ได้ที่ละเอียดพอ)",
+ "srcFps": 30,
+ "clips": [
+  "idle",
+  "walk",
+  "sit",
+  "lie"
+ ],
+ "_dirs": "ทิศตามภาพอ้างอิง 8 ทิศ : S = เห็นหน้า · W = แมวหันซ้ายของภาพ · มุม = องศากล้องรอบตัว (S = 0 · หมุนไปทาง W)",
+ "dirs": {
+  "S": 0,
+  "SW": 45,
+  "W": 90,
+  "NW": 135,
+  "N": 180,
+  "NE": 225,
+  "E": 270,
+  "SE": 315
+ },
+ "camera": {
+  "_n": "orthographic · elevDeg = ก้มลงจากแนวนอน · orthoM = ความกว้างภาพเป็นเมตร (คงที่ทุกท่า ขนาดแมวเท่ากันทุกภาพ) · targetY = จุดเล็ง (ความสูง ม.)",
+  "elevDeg": 30,
+  "orthoM": 0.56,
+  "distM": 2.0,
+  "targetY": 0.2
+ },
+ "light": {
+  "_n": "แดดจากซ้ายบนของภาพ หมุนตามกล้อง (แสงเดียวกันทุกทิศ) · worldStrength = แสงรอบตัว",
+  "sunEnergy": 2.2,
+  "sunElevDeg": 50,
+  "sunSideDeg": -40,
+  "worldStrength": 1.4
+ },
+ "sheet": {
+  "_n": "แผ่นรวมต่อท่า : แถว = ทิศ ตามลำดับ dirs · คอลัมน์ = เฟรม · previewPx = ขนาดเฟรมในภาพตัวอย่าง",
+  "previewPx": 96,
+  "previewFrames": 8
+ },
+ "toon": {
+  "_n": "สีขั้น : steps = [ตำแหน่งแสง 0..1, ความสว่าง] (ColorRamp คงที่) · เส้นขอบ outlineM เมตร สี outlineColor (0..1 linear)",
+  "steps": [
+   [
+    0.0,
+    0.62
+   ],
+   [
+    0.35,
+    0.84
+   ],
+   [
+    0.7,
+    1.0
+   ]
+  ],
+  "outlineM": 0.0025,
+  "outlineColor": [
+   0.12,
+   0.08,
+   0.06
+  ]
+ },
+ "krita": {
+  "_n": "ขั้น Krita (tools/krita/mui_sprites.py) : ย่อ renderPx → sizePx ด้วย scaleFilter แล้วใส่ filters ตามลำดับ [ชื่อฟิลเตอร์ Krita, ค่า] (oilpaint/posterize ทำหน้าเละที่ 256 px ไม่ใช้)",
+  "outDir": "shots/tmp.temp/cat_sprites_krita",
+  "scaleFilter": "Bicubic",
+  "filters": [
+   [
+    "gaussiannoisereducer",
+    {
+     "threshold": 12,
+     "windowsize": 1
+    }
+   ],
+   [
+    "unsharp",
+    {
+     "amount": 0.4,
+     "halfSize": 1,
+     "lightnessOnly": true,
+     "threshold": 0
+    }
+   ]
+  ]
+ }
+}

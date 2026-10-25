@@ -1,0 +1,92 @@
+{
+  "_note": "ห้องโชว์แมว (cat.html) · ตัวเลขทุกตัวมี value/min/max/step ให้แผง F1 สร้าง slider เอง · ค่าที่เป็นสีเป็น hex sRGB (มีแค่ value) · ระยะเป็นเมตร มุมเป็นองศา",
+  "light": {
+    "exposure": { "value": 1, "min": 0.3, "max": 2.5, "step": 0.05 },
+    "envIntensity": { "value": 0.5, "min": 0, "max": 2, "step": 0.05 },
+    "hemiIntensity": { "value": 0.9, "min": 0, "max": 3, "step": 0.05 },
+    "hemiSkyColor": { "value": "#cfe6ff" },
+    "hemiGroundColor": { "value": "#8a7a68" },
+    "sunIntensity": { "value": 2.4, "min": 0, "max": 8, "step": 0.1 },
+    "sunColor": { "value": "#fff1dc" },
+    "sunAzimuthDeg": { "value": 40, "min": -180, "max": 180, "step": 1 },
+    "sunElevationDeg": { "value": 50, "min": 5, "max": 90, "step": 1 },
+    "sunDistanceM": { "value": 2, "min": 0.5, "max": 6, "step": 0.1 }
+  },
+  "shadow": {
+    "mapSize": { "value": 2048, "min": 512, "max": 4096, "step": 512 },
+    "frustumHalfM": { "value": 0.7, "min": 0.3, "max": 3, "step": 0.05 },
+    "near": { "value": 0.1, "min": 0.01, "max": 1, "step": 0.01 },
+    "far": { "value": 4, "min": 1, "max": 12, "step": 0.5 },
+    "bias": { "value": -0.0003, "min": -0.005, "max": 0.005, "step": 0.0001 },
+    "normalBias": { "value": 0.004, "min": 0, "max": 0.05, "step": 0.001 },
+    "radius": { "value": 2, "min": 0, "max": 8, "step": 0.5 }
+  },
+  "sky": {
+    "topColor": { "value": "#7fb2e8" },
+    "horizonColor": { "value": "#dcecf7" }
+  },
+  "floor": {
+    "color": { "value": "#b9b4a8" },
+    "roughness": { "value": 0.95, "min": 0, "max": 1, "step": 0.05 },
+    "sizeM": { "value": 20, "min": 2, "max": 100, "step": 1 }
+  },
+  "grid": {
+    "cellM": { "value": 0.1, "min": 0.01, "max": 1, "step": 0.01 },
+    "sizeM": { "value": 3, "min": 0.5, "max": 20, "step": 0.5 },
+    "color": { "value": "#5d5a52" },
+    "opacity": { "value": 0.45, "min": 0.05, "max": 1, "step": 0.05 },
+    "liftM": { "value": 0.0005, "min": 0, "max": 0.01, "step": 0.0005 }
+  },
+  "camera": {
+    "fovDeg": { "value": 40, "min": 15, "max": 90, "step": 1 },
+    "near": { "value": 0.02, "min": 0.005, "max": 0.2, "step": 0.005 },
+    "far": { "value": 60, "min": 5, "max": 500, "step": 5 },
+    "targetHeightM": { "value": 0.2, "min": 0, "max": 0.6, "step": 0.01 },
+    "yawStartDeg": { "value": 35, "min": -180, "max": 180, "step": 1 },
+    "pitchStartDeg": { "value": 18, "min": -10, "max": 80, "step": 1 },
+    "distStartM": { "value": 1.1, "min": 0.3, "max": 4, "step": 0.05 },
+    "pitchMinDeg": { "value": -5, "min": -30, "max": 30, "step": 1 },
+    "pitchMaxDeg": { "value": 85, "min": 30, "max": 89, "step": 1 },
+    "zoomMinM": { "value": 0.35, "min": 0.1, "max": 1, "step": 0.05 },
+    "zoomMaxM": { "value": 4, "min": 1, "max": 20, "step": 0.5 },
+    "zoomStep": { "value": 1.12, "min": 1.02, "max": 1.5, "step": 0.01 },
+    "dragDegPerPx": { "value": 0.4, "min": 0.05, "max": 2, "step": 0.05 },
+    "padRotateDegPerS": { "value": 120, "min": 20, "max": 360, "step": 5 },
+    "padZoomStepsPerS": { "value": 8, "min": 1, "max": 30, "step": 1 },
+    "padDeadzone": { "value": 0.2, "min": 0, "max": 0.6, "step": 0.05 },
+    "maxDtS": { "value": 0.1, "min": 0.02, "max": 0.5, "step": 0.01 }
+  },
+  "anim": {
+    "crossfadeS": { "value": 0.3, "min": 0, "max": 2, "step": 0.05 },
+    "speed": { "value": 1, "min": 0.1, "max": 3, "step": 0.05 }
+  },
+  "blink": {
+    "intervalMinS": { "value": 2.5, "min": 0.5, "max": 10, "step": 0.1 },
+    "intervalMaxS": { "value": 6, "min": 0.5, "max": 15, "step": 0.1 },
+    "closedS": { "value": 0.14, "min": 0.04, "max": 1, "step": 0.01 },
+    "doubleChance": { "value": 0.2, "min": 0, "max": 1, "step": 0.05 },
+    "doubleGapRatio": { "value": 0.8, "min": 0.2, "max": 3, "step": 0.1 }
+  },
+  "walk": {
+    "walkMps": { "value": 0.12, "min": 0.02, "max": 1, "step": 0.01 },
+    "runMps": { "value": 0.9, "min": 0.1, "max": 3, "step": 0.05 },
+    "turnDegPerS": { "value": 240, "min": 30, "max": 1000, "step": 10 },
+    "areaRadiusM": { "value": 8, "min": 0.5, "max": 40, "step": 0.5 },
+    "minInput": { "value": 0.15, "min": 0, "max": 0.9, "step": 0.05 }
+  },
+  "sprite": {
+    "sizeMul": { "value": 1, "min": 0.5, "max": 2, "step": 0.05 }
+  },
+  "render": {
+    "pixelRatioMax": { "value": 2, "min": 1, "max": 3, "step": 0.25 },
+    "lowPixelRatio": { "value": 1, "min": 0.5, "max": 2, "step": 0.25 }
+  },
+  "ui": {
+    "toastS": { "value": 3, "min": 1, "max": 10, "step": 0.5 }
+  },
+  "fallback": {
+    "heightM": { "value": 0.41, "min": 0.1, "max": 1, "step": 0.01 },
+    "color": { "value": "#e8d9b8" },
+    "radiusM": { "value": 0.12, "min": 0.03, "max": 0.5, "step": 0.01 }
+  }
+}

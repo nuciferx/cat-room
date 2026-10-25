@@ -1,0 +1,45 @@
+{
+  "_comment": "ค่าปรับของ prep_din_mesh.py · พิกัดเป็นแบบ Blender (Z ขึ้น, หน้าตัวละคร = -Y) หลังจัดทิศแล้ว หน่วยเมตร",
+  "source_glb": "C:/Users/nucifer/.claude/uploads/9031b662-0595-41fa-a88e-c7879dc2737c/25bcf8b0-Meshy_AI_Blue_Jacket_Explorer_1006172624_texture.glb",
+  "din_glb": "F:/game/pp3/public/assets/models/characters/din.glb",
+  "din_mesh_name": "Din_LOD0",
+  "out_dir": "F:/game/pp3/shots/tmp.temp/din_new",
+
+  "source_front": "-Y",
+  "source_front_note": "ตรวจด้วยภาพเรนเดอร์ (probe) แล้ว: หน้าต้นฉบับหัน -Y ของ Blender (= +Z ของ glTF) ตรงกับดินเดิม ไม่ต้องหมุน",
+  "rotate_z_deg": 0,
+
+  "merge_distance": 0.000001,
+  "feet_z_max": 0.12,
+  "min_island_tris": 40,
+
+  "lod0_tris": 10000,
+  "lod1_tris": 3000,
+  "tolerance": 0.015,
+  "decimate_delimit": ["UV"],
+  "decimate_delimit_fallback": [],
+  "smooth_angle_deg": 55,
+
+  "detail_regions": {
+    "head": { "z_min": 1.44 },
+    "hand": { "abs_x_min": 0.70, "z_min": 1.15, "z_max": 1.55 }
+  },
+  "body_weight": 1.0,
+  "detail_weight": 0.25,
+  "detail_factor": 1.0,
+
+  "texture_size": 1024,
+  "jpeg_quality": 90,
+  "glb_keep_pbr": true,
+
+  "fbx": { "axis_forward": "-Z", "axis_up": "Y", "path_mode": "COPY", "embed_textures": true },
+
+  "render": {
+    "cell": 640,
+    "body_scale": 2.15,
+    "face_scale": 0.42,
+    "face_center": [0.0, 1.62],
+    "hand_scale": 0.42,
+    "hand_center": [0.84, 1.41]
+  }
+}

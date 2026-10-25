@@ -1,0 +1,463 @@
+{
+ "_note": "หมาจากโมเดล Meshy (แผนเสียเงินของเจ้าของงาน · ไฟล์ต้นทางไม่เข้า git) → dog.glb (สร้างด้วย build_quad_meshy.py -- dog) · พิกัด glTF : x = ซ้ายของตัว y = ขึ้น z = หน้า เมตร จุดกำเนิดที่พื้นใต้กลางตัว · โครงกระดูกชุดเดียวกับ beasts_rig.SKELETON + mouth_item (ลูกของ head ระหว่างขากรรไกร) · ท่า/คลิปยกจาก beasts_dog.json แล้วปรับเข้าสัดส่วนนี้ · ปากต้นทางอ้าอยู่แล้ว (ลิ้นห้อย) ขากรรไกรล่างผูกกระดูก jaw",
+ "source": "shots/tmp.temp/meshy_dog/source.glb",
+ "out": "public/assets/models/animals/dog.glb",
+ "workDir": "shots/tmp.temp/dog_meshy",
+ "fps": 30,
+ "frameStep": 2,
+ "budget": {"tris":4000,"fileKB":1200,"texPx":1024},
+ "normalize": {
+    "_n": "lengthM null = สเกลจากสูงไหล่อย่างเดียว · สูงไหล่วัดที่ z กีบหน้า + withersOffsetZ (หลังคอ) · หน่วยไฟล์ต้นทาง",
+    "headSign": 1,
+    "lengthM": null,
+    "withersM": 0.5,
+    "hoofBand": 0.03,
+    "legSplitZ": -0.1,
+    "tailHalfWidth": 0,
+    "withersWindow": 0.03,
+    "withersOffsetZ": -0.12
+   },
+ "mesh": {
+    "targetTris": 3850,
+    "merge_distance": 0.000001,
+    "min_island_tris": 40,
+    "tolerance": 0.015,
+    "decimate_delimit": [],
+    "decimate_delimit_fallback": [],
+    "detail_factor": 1,
+    "detailStrength": 0.5,
+    "detailZones": [
+       {"_n":"หัว หู","min":[-0.15,0.38,0.22],"max":[0.15,0.65,0.5],"strength":0.25},
+       {"_n":"อุ้งเท้า","min":[-0.12,0,-0.32],"max":[0.12,0.04,0.3],"strength":0.2}
+      ]
+   },
+ "bake": {
+    "_n": "อบภาพจากเมชละเอียด (quad_meshy_bake) · uvAngleRad = มุมตัดเกาะของ smart project · cageM/rayM = ระยะยิงรังสีจากผิวหยาบ (เมตร)",
+    "size": 1024,
+    "jpegQuality": 88,
+    "samples": 4,
+    "uvAngleRad": 1.15,
+    "uvMargin": 0.004,
+    "marginPx": 4,
+    "cageM": 0.03,
+    "rayM": 0.06
+   },
+ "material": {"roughness":0.92,"specular":0.15,"normalStrength":1,"doubleSided":true},
+ "rig": {
+    "_n": "ข้อต่อหลังสเกล (เมตร พิกัด glTF) วัดจากภาพข้าง/หน้าที่มีเส้นตาราง + ภาคตัดของเมช · หางม้วนขึ้นเหนือก้น",
+    "spine": [[0,0.38,-0.03],[0,0.39,0.08]],
+    "pelvis": [[0,0.38,-0.03],[0,0.39,-0.22]],
+    "chest": [[0,0.39,0.08],[0,0.4,0.18]],
+    "hackles": [[0,0.38,-0.03],[0,0.46,-0.03]],
+    "neck": [[0,0.41,0.18],[0,0.47,0.23],[0,0.53,0.27],[0,0.46,0.44]],
+    "jaw": [[0,0.46,0.3],[0,0.42,0.39]],
+    "ear": [[0.05,0.58,0.27],[0.115,0.56,0.28]],
+    "tail": [[0,0.44,-0.255],[0,0.53,-0.33],[0,0.585,-0.25],[0,0.5,-0.15]],
+    "front": [[0.055,0.34,0.2],[0.05,0.24,0.145],[0.05,0.07,0.168],[0.055,0.022,0.19],[0.06,0,0.235]],
+    "hind": [[0.05,0.36,-0.2],[0.055,0.27,-0.165],[0.043,0.115,-0.295],[0.055,0.025,-0.255],[0.067,0,-0.215]],
+    "legOverrides": {
+       "_n": "ขาขวาของต้นทางยืนต่างจากซ้ายเล็กน้อย",
+       "FR": [[-0.055,0.34,0.2],[-0.068,0.24,0.165],[-0.07,0.07,0.197],[-0.075,0.022,0.215],[-0.078,0,0.262]],
+       "HR": [[-0.05,0.36,-0.2],[-0.058,0.27,-0.155],[-0.049,0.115,-0.278],[-0.06,0.025,-0.237],[-0.07,0,-0.195]]
+      },
+    "extra": [["mouth_item","head",[0,0.43,0.36],[0,0.43,0.4]]]
+   },
+ "weights": {
+    "_n": "ดูหัวไฟล์ quad_meshy_weights.py · พิกัด glTF เมตร",
+    "legs": {
+       "F": {"topY":0.24,"zMin":0.05,"zMax":0.3,"radiusM":0.045},
+       "H": {"topY":0.28,"zMin":-0.36,"zMax":-0.08,"radiusM":0.05}
+      },
+    "upperLegBiasM": 0.03,
+    "tail": {"fromZ":-0.13,"halfWidthM":0.05,"radiusM":0.04},
+    "ear": {"radiusM":0.035,"minAbsX":0.04},
+    "jaw": {"fromZ":0.3,"halfWidthM":0.05,"lip":[[0.3,0.45],[0.34,0.445],[0.46,0.445]]},
+    "rigidBoxes": [],
+    "mane": {
+       "surface": [[-0.25,0.4],[0.15,0.42]],
+       "fromZ": -0.2,
+       "toZ": 0.15,
+       "spanM": 0.04,
+       "fromBones": ["pelvis","spine","chest"]
+      },
+    "blendPairs": {
+       "upperarm": ["chest",0.05],
+       "forearm": ["upperarm",0.03],
+       "frontfoot": ["forearm",0.025],
+       "fronttoe": ["frontfoot",0.015],
+       "thigh": ["pelvis",0.05],
+       "shin": ["thigh",0.03],
+       "hindfoot": ["shin",0.025],
+       "hindtoe": ["hindfoot",0.015],
+       "spine": ["pelvis",0.05],
+       "chest": ["spine",0.05],
+       "neck1": ["chest",0.04],
+       "neck2": ["neck1",0.035],
+       "head": ["neck2",0.04],
+       "tail1": ["pelvis",0.03],
+       "tail2": ["tail1",0.025],
+       "tail3": ["tail2",0.025],
+       "ear": ["head",0.015],
+       "jaw": ["head",0.02]
+      },
+    "smoothIters": 4,
+    "legCrossM": 0.015,
+    "legMaxY": 0.42,
+    "minWeight": 0.01,
+    "maxInfluences": 4
+   },
+ "stancesNote": "ยกจาก beasts_dog.json · เป้า tip ของ reach เปลี่ยนเป็นปลายจมูก [0,0.46,0.44] / mouth_item [0,0.43,0.36] ของตัวนี้ · sit pitch −46 คอ/หัวก้มชดเชย · วัดก้น (pelvis spine thigh tail1 น้ำหนัก ≥ 0.3) แตะพื้น · lie วัดเฉพาะลำตัวแตะพื้น · sniff/pickOpen ก้มตัวมากขึ้น (คอสั้นกว่าตัวปั้น)",
+ "stances": {
+    "walkBase": {"offY":-0.025},
+    "trotBase": {"offY":-0.02,"neck1Pitch":6,"tail1Pitch":-10},
+    "runBase": {"offY":-0.04,"neck1Pitch":18,"headPitch":-6,"earBack":30,"tail1Pitch":-45,"tail2Pitch":-25},
+    "carry": {"neck1Pitch":-10,"headPitch":-6,"jaw":28,"earBack":-5},
+    "carryTrot": {"_from":"trotBase","neck1Pitch":-4,"headPitch":-6,"jaw":28},
+    "carryRun": {"_from":"runBase","neck1Pitch":8,"headPitch":-12,"jaw":28},
+    "sniff": {
+       "pitch": 20,
+       "offY": -0.09,
+       "neck2Pitch": 0,
+       "headPitch": 10,
+       "F.dz": 0.06,
+       "earBack": 10,
+       "tail1Pitch": -10,
+       "_reach": [{"param":"neck1Pitch","lo":0,"hi":95,"tip":[0,0.46,0.44],"bone":"head","targetY":0.03}]
+      },
+    "pickOpen": {
+       "pitch": 24,
+       "offY": -0.11,
+       "neck2Pitch": 0,
+       "headPitch": 0,
+       "jaw": 34,
+       "F.dz": 0.07,
+       "_reach": [{"param":"neck1Pitch","lo":0,"hi":95,"tip":[0,0.43,0.36],"bone":"head","targetY":0.07}],
+       "F.low": -10
+      },
+    "pickBite": {"_from":"pickOpen","jaw":28},
+    "alarm": {"offY":-0.01,"pitch":-2,"neck1Pitch":-6,"hackles":0.5,"earBack":-10,"tail1Pitch":12},
+    "barkBase": {"offY":-0.01,"neck1Pitch":4,"headPitch":-8,"earBack":-8,"hackles":0.2},
+    "whine": {"offY":-0.02,"pitch":3,"neck1Pitch":18,"headPitch":10,"earBack":45,"tail1Pitch":-50,"tail2Pitch":-30},
+    "sit": {
+       "pitch": -46,
+       "neck1Pitch": -3,
+       "headPitch": 20,
+       "H.low": -80,
+       "H.dz": 0.12,
+       "F.dz": -0.02,
+       "tail1Pitch": -70,
+       "tail2Pitch": -20,
+       "_reach": [
+          {
+           "param": "offY",
+           "lo": -0.4,
+           "hi": 0.1,
+           "group": ["pelvis","spine","thigh_L","thigh_R","tail1"],
+           "minW": 0.3,
+           "targetY": 0.003
+          }
+         ]
+      },
+    "lie": {
+       "neck1Pitch": -12,
+       "headPitch": 8,
+       "F.dz": 0.24,
+       "F.low": -85,
+       "F.toe": 0,
+       "H.low": -80,
+       "H.dz": 0.15,
+       "H.dx": 0.03,
+       "tail1Pitch": -70,
+       "tail2Pitch": -30,
+       "_reach": [{"param":"offY","lo":-0.45,"hi":0.05,"group":["spine","chest","pelvis"],"minW":0.6,"targetY":0.015}]
+      },
+    "swim": {
+       "legFloor": -5,
+       "pitch": -12,
+       "neck1Pitch": -45,
+       "headPitch": 30,
+       "earBack": 15,
+       "tail1Pitch": -75,
+       "tail2Pitch": -20,
+       "_reach": [{"param":"offY","lo":-0.7,"hi":0,"group":["spine","chest","pelvis"],"minW":0.6,"targetY":-0.22}],
+       "all.attach": 1
+      },
+    "crouch": {"offY":-0.09,"offZ":-0.02,"pitch":4,"neck1Pitch":10,"earBack":10,"tail1Pitch":-20},
+    "takeoff": {
+       "offY": 0.08,
+       "offZ": 0.15,
+       "pitch": -25,
+       "neck1Pitch": -15,
+       "F.dy": 0.2,
+       "F.dz": 0.18,
+       "F.low": 40,
+       "F.toe": 40,
+       "H.dz": -0.02,
+       "H.toe": -20,
+       "tail1Pitch": -30
+      },
+    "air": {
+       "offY": 0.6,
+       "offZ": 0.38,
+       "pitch": -8,
+       "neck1Pitch": -5,
+       "F.dy": 0.62,
+       "F.dz": 0.6,
+       "F.low": 30,
+       "F.toe": 20,
+       "H.dy": 0.58,
+       "H.dz": 0.3,
+       "H.low": 30,
+       "H.toe": 40,
+       "tail1Pitch": -40
+      },
+    "landFront": {
+       "offY": 0.47,
+       "offZ": 0.52,
+       "pitch": 12,
+       "neck1Pitch": 5,
+       "F.dy": 0.5,
+       "F.dz": 0.62,
+       "H.dy": 0.5,
+       "H.dz": 0.38,
+       "H.low": 30,
+       "H.toe": 30,
+       "tail1Pitch": -20
+      },
+    "onStep": {"offY":0.5,"offZ":0.62,"F.dy":0.5,"F.dz":0.62,"H.dy":0.5,"H.dz":0.62}
+   },
+ "clips": {
+    "order": [
+       "idle",
+       "sit",
+       "lie",
+       "walk",
+       "trot",
+       "run",
+       "sniff",
+       "bark",
+       "wag",
+       "whine",
+       "carry_trot",
+       "carry_run",
+       "pick_mouth",
+       "drop_mouth",
+       "alarm",
+       "swim",
+       "jump_up"
+      ],
+    "idle": {
+       "type": "still",
+       "seconds": 4,
+       "osc": {"offY":[0.0015,5,0],"chestPitch":[0.6,5,0.25],"tailYaw":[6,2,0]},
+       "tracks": {
+          "headYaw": [[0,0],[0.7,0],[1,22],[1.9,22],[2.3,-12],[3.2,-12],[3.6,0],[4,0]],
+          "headRoll": [[0,0],[1,0],[1.3,8],[1.8,8],[2.1,0],[4,0]],
+          "earBackL": [[0,0],[2.6,0],[2.7,25],[2.85,0],[4,0]],
+          "earBackR": [[0,0],[0.4,0],[0.5,20],[0.65,0],[4,0]]
+         }
+      },
+    "sit": {
+       "type": "still",
+       "seconds": 4,
+       "stance": "sit",
+       "osc": {"offY":[0.0012,5,0],"chestPitch":[0.6,5,0.25]},
+       "tracks": {"headYaw":[[0,0],[1.2,0],[1.5,18],[2.6,18],[3,0],[4,0]],"earBackL":[[0,0],[2,0],[2.1,20],[2.25,0],[4,0]]}
+      },
+    "lie": {
+       "type": "still",
+       "seconds": 4,
+       "stance": "lie",
+       "osc": {"chestPitch":[0.8,4,0.25],"headPitch":[1.5,1,0]},
+       "tracks": {
+          "headYaw": [[0,0],[1.5,0],[1.9,15],[2.8,15],[3.2,0],[4,0]],
+          "earBackR": [[0,0],[0.8,0],[0.9,20],[1.05,0],[4,0]]
+         }
+      },
+    "walk": {
+       "type": "gait",
+       "seconds": 0.5333,
+       "strideM": 0.56,
+       "duty": 0.6,
+       "stance": "walkBase",
+       "phases": {"HL":0,"FL":0.25,"HR":0.5,"FR":0.75},
+       "legs": {"F":{"liftM":0.05,"lowSwingDeg":45,"toeSwingDeg":50},"H":{"liftM":0.045,"lowSwingDeg":20,"toeSwingDeg":40}},
+       "osc": {"offY":[0.005,2,0.1],"roll":[1.5,1,0],"neck1Pitch":[2,2,0.2],"tailYaw":[8,1,0],"headYaw":[3,1,0.25]}
+      },
+    "trot": {
+       "type": "gait",
+       "seconds": 0.4,
+       "strideM": 0.84,
+       "duty": 0.38,
+       "stance": "trotBase",
+       "phases": {"FL":0,"HR":0.02,"FR":0.5,"HL":0.52},
+       "legs": {"F":{"liftM":0.07,"lowSwingDeg":70,"toeSwingDeg":60},"H":{"liftM":0.06,"lowSwingDeg":30,"toeSwingDeg":45}},
+       "osc": {"offY":[0.008,2,0.05],"roll":[1.2,1,0],"tailYaw":[10,1,0.2]}
+      },
+    "run": {
+       "type": "gait",
+       "seconds": 0.3333,
+       "strideM": 1.5,
+       "duty": 0.22,
+       "stance": "runBase",
+       "phases": {"HL":0,"HR":0.1,"FR":0.42,"FL":0.52},
+       "legs": {"F":{"liftM":0.1,"lowSwingDeg":90,"toeSwingDeg":70},"H":{"liftM":0.09,"lowSwingDeg":40,"toeSwingDeg":50}},
+       "osc": {
+          "offY": [0.02,1,0.45],
+          "pitch": [5,1,0.1],
+          "chestPitch": [7,1,0.3],
+          "pelvisPitch": [9,1,0.8],
+          "neck1Pitch": [6,1,0.4],
+          "tail1Pitch": [8,1,0.3]
+         }
+      },
+    "sniff": {
+       "type": "still",
+       "seconds": 3,
+       "stance": "sniff",
+       "osc": {
+          "headYaw": [14,1,0],
+          "neckYaw": [6,1,0.1],
+          "offZ": [0.01,2,0.25],
+          "jaw": [3,12,0,1],
+          "neck1Pitch": [2,6,0],
+          "tailYaw": [10,3,0]
+         }
+      },
+    "bark": {
+       "type": "still",
+       "seconds": 1,
+       "loop": false,
+       "stance": "barkBase",
+       "tracks": {
+          "jaw": [[0,0],[0.1,30],[0.22,2],[0.4,0],[0.5,30],[0.62,2],[1,0]],
+          "headPitch": [[0,0],[0.1,-10],[0.22,2],[0.4,0],[0.5,-10],[0.62,2],[1,0]],
+          "offZ": [[0,0],[0.1,0.015],[0.3,0],[0.5,0.015],[0.7,0],[1,0]],
+          "tail1Pitch": [[0,0],[0.1,10],[1,0]]
+         }
+      },
+    "wag": {"type":"still","seconds":0.6,"only":["tail1","tail2","tail3"],"osc":{"tailYaw":[35,2,0]}},
+    "whine": {
+       "type": "still",
+       "seconds": 2,
+       "stance": "whine",
+       "osc": {
+          "offY": [0.002,12,0],
+          "headPitch": [2,4,0],
+          "jaw": [4,3,0,1],
+          "headYaw": [6,1,0],
+          "headRoll": [6,1,0.25],
+          "tailYaw": [12,4,0]
+         }
+      },
+    "carry_trot": {
+       "type": "gait",
+       "seconds": 0.4,
+       "strideM": 0.84,
+       "duty": 0.38,
+       "stance": "carryTrot",
+       "phases": {"FL":0,"HR":0.02,"FR":0.5,"HL":0.52},
+       "legs": {"F":{"liftM":0.07,"lowSwingDeg":70,"toeSwingDeg":60},"H":{"liftM":0.06,"lowSwingDeg":30,"toeSwingDeg":45}},
+       "osc": {"offY":[0.008,2,0.05],"roll":[1.2,1,0],"tailYaw":[10,1,0.2]}
+      },
+    "carry_run": {
+       "type": "gait",
+       "seconds": 0.3333,
+       "strideM": 1.5,
+       "duty": 0.22,
+       "stance": "carryRun",
+       "phases": {"HL":0,"HR":0.1,"FR":0.42,"FL":0.52},
+       "legs": {"F":{"liftM":0.1,"lowSwingDeg":90,"toeSwingDeg":70},"H":{"liftM":0.09,"lowSwingDeg":40,"toeSwingDeg":50}},
+       "osc": {
+          "offY": [0.02,1,0.45],
+          "pitch": [5,1,0.1],
+          "chestPitch": [7,1,0.3],
+          "pelvisPitch": [9,1,0.8],
+          "neck1Pitch": [3,1,0.4],
+          "tail1Pitch": [8,1,0.3]
+         }
+      },
+    "pick_mouth": {
+       "type": "still",
+       "seconds": 1.2,
+       "loop": false,
+       "seq": [[0,"stand"],[0.45,"pickOpen"],[0.6,"pickOpen"],[0.72,"pickBite"],[1.05,"carry"],[1.2,"carry"]]
+      },
+    "drop_mouth": {
+       "type": "still",
+       "seconds": 1.1,
+       "loop": false,
+       "seq": [[0,"carry"],[0.4,"pickBite"],[0.5,"pickOpen"],[0.65,"pickOpen"],[1.05,"stand"],[1.1,"stand"]]
+      },
+    "alarm": {
+       "type": "still",
+       "seconds": 1.6,
+       "stance": "alarm",
+       "osc": {
+          "jaw": [26,8,0,1],
+          "headPitch": [-7,8,0.05],
+          "offZ": [0.012,8,0.1],
+          "F.dy": [0.025,4,0,1],
+          "offY#2": [0.008,4,0.1,1],
+          "tailYaw": [15,4,0]
+         },
+       "tracks": {
+          "headYaw": [[0,0],[0.25,28],[0.65,28],[0.95,-28],[1.35,-28],[1.6,0]],
+          "neckYaw": [[0,0],[0.25,14],[0.65,14],[0.95,-14],[1.35,-14],[1.6,0]]
+         }
+      },
+    "swim": {
+       "type": "paddle",
+       "seconds": 0.8,
+       "stance": "swim",
+       "mps": 1.6,
+       "waterline": true,
+       "phases": {"FL":0,"HR":0,"FR":0.5,"HL":0.5},
+       "legs": {
+          "F": {
+             "centerY": 0.06,
+             "centerZ": 0.06,
+             "ampYM": 0.07,
+             "ampZM": 0.09,
+             "lowDeg": 30,
+             "lowAmpDeg": 30,
+             "toeDeg": 20,
+             "toeAmpDeg": 30
+            },
+          "H": {
+             "centerY": 0.06,
+             "centerZ": -0.06,
+             "ampYM": 0.05,
+             "ampZM": 0.08,
+             "lowDeg": 10,
+             "lowAmpDeg": 20,
+             "toeDeg": 10,
+             "toeAmpDeg": 25
+            }
+         },
+       "osc": {"offY":[0.008,2,0],"headPitch":[2,2,0.2],"tailYaw":[12,1,0]}
+      },
+    "jump_up": {
+       "type": "still",
+       "seconds": 1.1,
+       "loop": false,
+       "reportEnd": true,
+       "seq": [[0,"stand"],[0.25,"crouch"],[0.4,"takeoff"],[0.55,"air"],[0.7,"landFront"],[0.9,"onStep"],[1.1,"onStep"]]
+      }
+   },
+ "preview": {
+    "dir": "shots/tmp.temp/dog_meshy",
+    "cell": 360,
+    "floorSizeM": 8,
+    "scale": 1.3,
+    "center": [0,0.3,0.05],
+    "floorRGBA": [0.45,0.62,0.4,1],
+    "skyRGB": [0.8,0.83,0.86],
+    "fractions": [0,0.25,0.5,0.75],
+    "views": [
+       {"_n":"หน้า","tiltDeg":88,"turnDeg":0},
+       {"_n":"ข้างซ้าย","tiltDeg":88,"turnDeg":90},
+       {"_n":"มุมเกม yaw -30 เฉียงลง","tiltDeg":45,"turnDeg":-30}
+      ]
+   }
+}

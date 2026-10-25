@@ -1,0 +1,464 @@
+{
+  "_note": "หมาไทยบ้าน (ทรงหมาไทย/พันทาง) : สูงไหล่ ~0.5 ม. ยาวลำตัว ~0.6 ม. คอสั้นหนา หัวใกล้แนวไหล่ กะโหลกกว้าง ปากสั้น หูตั้งสามเหลี่ยมขนาดกลาง อกลึก เอวคอด หางม้วนเป็นวงบนหลัง ขนสั้นน้ำตาลอ่อน ท้องครีม ปลอกคอผ้าเก่าสีแดงซีด · ขาหน้าตั้งที่ z +0.14 ขาหลัง z -0.235 · mouth_item = จุดแขวนของที่คาบ (ลูกของ head)",
+  "seedOffset": 2,
+  "budgetTris": 3000,
+  "previewScale": 1.5,
+  "previewCenter": [0, 0.3, 0.05],
+  "rig": {
+    "spine": [[0, 0.42, 0], [0, 0.42, 0.12]],
+    "pelvis": [[0, 0.42, 0], [0, 0.425, -0.25]],
+    "chest": [[0, 0.42, 0.12], [0, 0.42, 0.2]],
+    "hackles": [[0, 0.39, 0], [0, 0.49, 0]],
+    "neck": [[0, 0.42, 0.2], [0, 0.48, 0.26], [0, 0.54, 0.31], [0, 0.518, 0.49]],
+    "jaw": [[0, 0.535, 0.36], [0, 0.505, 0.48]],
+    "ear": [[0.035, 0.6, 0.335], [0.055, 0.66, 0.32]],
+    "tail": [[0, 0.47, -0.32], [0, 0.58, -0.33], [0.01, 0.62, -0.26], [0.03, 0.56, -0.22]],
+    "front": [[0.06, 0.37, 0.15], [0.065, 0.26, 0.11], [0.06, 0.085, 0.13], [0.06, 0.025, 0.14], [0.06, 0, 0.175]],
+    "hind": [[0.065, 0.38, -0.21], [0.07, 0.25, -0.15], [0.065, 0.12, -0.255], [0.06, 0.025, -0.235], [0.06, 0, -0.2]],
+    "extra": [["mouth_item", "head", [0, 0.49, 0.43], [0, 0.49, 0.48]]]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "region": "body",
+      "rings": 34,
+      "around": 16,
+      "boneKnots": [[0, "pelvis"], [3, "pelvis"], [5, "spine"], [6.5, "chest"], [8, "chest"], [9, "neck1"], [10, "neck2"], [11, "head"], [17, "head"]],
+      "stations": [[0, 0.4, -0.33, 0, 0, 0], [0, 0.405, -0.32, 0.04, 0.035, 0.04], [0, 0.415, -0.29, 0.075, 0.06, 0.07], [0, 0.425, -0.22, 0.088, 0.065, 0.085], [0, 0.42, -0.13, 0.08, 0.06, 0.07], [0, 0.415, -0.04, 0.09, 0.065, 0.11], [0, 0.41, 0.06, 0.1, 0.075, 0.15], [0, 0.42, 0.15, 0.1, 0.08, 0.165], [0, 0.44, 0.22, 0.088, 0.075, 0.14], [0, 0.48, 0.27, 0.075, 0.07, 0.095], [0, 0.525, 0.305, 0.065, 0.06, 0.07], [0, 0.56, 0.34, 0.062, 0.055, 0.06], [0, 0.565, 0.38, 0.058, 0.048, 0.052], [0, 0.545, 0.415, 0.042, 0.036, 0.045], [0, 0.53, 0.445, 0.03, 0.026, 0.032], [0, 0.522, 0.47, 0.022, 0.019, 0.024], [0, 0.519, 0.485, 0.016, 0.013, 0.015], [0, 0.518, 0.49, 0, 0, 0]]
+    },
+    {
+      "name": "jaw",
+      "region": "horn",
+      "rings": 7,
+      "around": 8,
+      "bones": "jaw",
+      "stations": [[0, 0.52, 0.375, 0.04, 0.014, 0.022], [0, 0.508, 0.41, 0.032, 0.012, 0.016], [0, 0.502, 0.445, 0.022, 0.009, 0.011], [0, 0.5, 0.47, 0.014, 0.006, 0.007], [0, 0.5, 0.48, 0, 0, 0]]
+    },
+    {
+      "name": "hackles",
+      "kind": "ridge",
+      "region": "mane",
+      "rings": 12,
+      "around": 6,
+      "topBone": "hackles",
+      "topW": 0.7,
+      "topFrac": 0.3,
+      "boneKnots": [[0, "pelvis"], [2, "spine"], [3, "chest"], [5, "chest"]],
+      "stations": [[0, 0.47, -0.14, 0, 0, 0], [0, 0.475, -0.08, 0.006, 0.008, 0.006], [0, 0.478, 0, 0.008, 0.012, 0.008], [0, 0.485, 0.08, 0.009, 0.014, 0.008], [0, 0.49, 0.16, 0.008, 0.012, 0.008], [0, 0.485, 0.22, 0, 0, 0]]
+    },
+    {
+      "name": "collar",
+      "region": "extra",
+      "rings": 4,
+      "around": 14,
+      "bones": "neck1",
+      "smooth": false,
+      "stations": [[0, 0.465, 0.252, 0.08, 0.075, 0.1], [0, 0.472, 0.258, 0.086, 0.081, 0.106], [0, 0.484, 0.268, 0.086, 0.081, 0.106], [0, 0.491, 0.274, 0.08, 0.075, 0.1]]
+    },
+    {
+      "name": "ear_L",
+      "region": "ear",
+      "rings": 6,
+      "around": 6,
+      "mirror": true,
+      "boneKnots": [[0, "head"], [1, "ear_L"], [3, "ear_L"]],
+      "stations": [[0.033, 0.59, 0.337, 0.022, 0.008, 0.006], [0.04, 0.615, 0.333, 0.02, 0.006, 0.005], [0.048, 0.64, 0.327, 0.011, 0.004, 0.003], [0.055, 0.66, 0.32, 0, 0, 0]]
+    },
+    {
+      "name": "eye_L",
+      "material": "eye",
+      "region": "horn",
+      "rings": 5,
+      "around": 6,
+      "mirror": true,
+      "side": [0, 0, 1],
+      "bones": "head",
+      "stations": [[0.039, 0.56, 0.41, 0, 0, 0], [0.041, 0.56, 0.41, 0.004, 0.004, 0.004], [0.044, 0.56, 0.41, 0.006, 0.006, 0.006], [0.047, 0.56, 0.41, 0.004, 0.004, 0.004], [0.049, 0.56, 0.41, 0, 0, 0]]
+    },
+    {
+      "name": "tail",
+      "region": "tail",
+      "rings": 20,
+      "around": 8,
+      "boneKnots": [[0, "pelvis"], [1, "tail1"], [2, "tail1"], [3.5, "tail2"], [5, "tail2"], [6.5, "tail3"], [9, "tail3"]],
+      "stations": [[0, 0.45, -0.3, 0.022, 0.022, 0.022], [0, 0.47, -0.32, 0.022, 0.024, 0.022], [0, 0.53, -0.345, 0.023, 0.026, 0.024], [0, 0.585, -0.33, 0.022, 0.025, 0.022], [0.005, 0.617, -0.295, 0.02, 0.022, 0.02], [0.012, 0.62, -0.255, 0.018, 0.02, 0.018], [0.022, 0.6, -0.225, 0.015, 0.016, 0.015], [0.03, 0.565, -0.22, 0.012, 0.012, 0.012], [0.033, 0.54, -0.24, 0.008, 0.008, 0.008], [0.034, 0.532, -0.26, 0, 0, 0]]
+    },
+    {
+      "name": "legF_L",
+      "kind": "chain",
+      "chain": "FL",
+      "region": "leg",
+      "rings": 13,
+      "around": 8,
+      "upto": 3,
+      "mirror": true,
+      "pre": [0, 0.08, 0.01],
+      "sizes": [[0.06, 0.07, 0.07], [0.055, 0.065, 0.06], [0.035, 0.04, 0.038], [0.02, 0.022, 0.02], [0.018, 0.02, 0.018]]
+    },
+    {
+      "name": "legH_L",
+      "kind": "chain",
+      "chain": "HL",
+      "region": "leg",
+      "rings": 13,
+      "around": 8,
+      "upto": 3,
+      "mirror": true,
+      "pre": [0, 0.07, 0],
+      "sizes": [[0.065, 0.08, 0.085], [0.06, 0.075, 0.08], [0.042, 0.045, 0.055], [0.02, 0.022, 0.026], [0.018, 0.019, 0.018]]
+    },
+    {
+      "name": "pawF_L",
+      "kind": "toe",
+      "leg": "FL",
+      "region": "toe",
+      "rings": 6,
+      "around": 8,
+      "mirror": true,
+      "stations": [[0, 0, 0, 0.018, 0.02, 0.018], [0.35, 0, 0, 0.022, 0.02, 0.018], [0.75, 0.003, 0, 0.02, 0.014, 0.013], [1, 0.004, 0, 0.011, 0.007, 0.006], [1.05, 0.004, 0, 0, 0, 0]]
+    },
+    {
+      "name": "pawH_L",
+      "kind": "toe",
+      "leg": "HL",
+      "region": "toe",
+      "rings": 6,
+      "around": 8,
+      "mirror": true,
+      "stations": [[0, 0, 0, 0.018, 0.02, 0.018], [0.35, 0, 0, 0.022, 0.02, 0.018], [0.75, 0.003, 0, 0.02, 0.014, 0.013], [1, 0.004, 0, 0.011, 0.007, 0.006], [1.05, 0.004, 0, 0, 0, 0]]
+    }
+  ],
+  "paint": {
+    "body": {
+      "type": "hair",
+      "streak": 0.22,
+      "streakCells": [200, 80],
+      "noise": 0.12,
+      "dorsalEdge": [-0.45, 0.45],
+      "colors": [[0, "#9f7243", "#d9c29c"], [0.3, "#b4844f", "#e6d2b0"], [0.5, "#b88a55", "#e3cda8"], [0.6, "#b4844f", "#dcc39c"], [0.7, "#ad7d49", "#c9a879"], [0.82, "#9b7044", "#c9a879"], [0.9, "#8a6440", "#b89a72"], [0.96, "#4a3626", "#4a3626"], [1, "#1c1714", "#1c1714"]],
+      "marks": [{ "type": "line", "a": [0, 0.8], "b": [0, 0.95], "width": 0.06, "color": "#2a1e18", "amount": 0.85 }]
+    },
+    "leg": {
+      "type": "hair",
+      "streak": 0.15,
+      "streakCells": [90, 40],
+      "noise": 0.1,
+      "colors": [[0, "#ad7d49", "#c9a879"], [0.55, "#c39563", "#d9c29c"], [1, "#e0cba6", "#e0cba6"]]
+    },
+    "toe": { "type": "tile", "color": "#e0cba6", "color2": "#c9b08a", "noise": 0.1, "tip": [0.85, "#2a221c"] },
+    "tail": {
+      "type": "hair",
+      "streak": 0.35,
+      "streakCells": [48, 40],
+      "dorsalEdge": [-0.3, 0.3],
+      "colors": [[0, "#a97a47", "#dcc6a0"], [0.7, "#b4844f", "#e3cfaa"], [1, "#e6d4b2", "#e6d4b2"]]
+    },
+    "ear": { "type": "hair", "streak": 0.15, "streakCells": [40, 20], "colors": [[0, "#a3743f", "#c99a8a"], [1, "#8e6438", "#b8857a"]] },
+    "horn": {
+      "type": "hair",
+      "streak": 0.15,
+      "streakCells": [64, 24],
+      "colors": [[0, "#cdb48c", "#d9c29c"], [0.75, "#9b7044", "#a07a52"], [1, "#3a2a20", "#3a2a20"]]
+    },
+    "mane": { "type": "hair", "streak": 0.4, "streakCells": [48, 6], "colors": [[0, "#8e6438", "#9f7243"], [1, "#9f7243", "#8e6438"]] },
+    "extra": { "type": "tile", "color": "#8e3b2c", "color2": "#6e2c22", "noise": 0.25, "rings": 3, "ringDark": 0.8 }
+  },
+  "stances": {
+    "walkBase": { "offY": -0.025 },
+    "trotBase": { "offY": -0.02, "neck1Pitch": 6, "tail1Pitch": -10 },
+    "runBase": { "offY": -0.04, "neck1Pitch": 18, "headPitch": -6, "earBack": 30, "tail1Pitch": -45, "tail2Pitch": -25 },
+    "carry": { "neck1Pitch": -10, "headPitch": -6, "jaw": 28, "earBack": -5 },
+    "carryTrot": { "_from": "trotBase", "neck1Pitch": -4, "headPitch": -6, "jaw": 28 },
+    "carryRun": { "_from": "runBase", "neck1Pitch": 8, "headPitch": -12, "jaw": 28 },
+    "sniff": {
+      "pitch": 16,
+      "offY": -0.07,
+      "neck2Pitch": 0,
+      "headPitch": 10,
+      "F.dz": 0.04,
+      "earBack": 10,
+      "tail1Pitch": -10,
+      "_reach": [{ "param": "neck1Pitch", "lo": 0, "hi": 120, "tip": [0, 0.518, 0.49], "bone": "head", "targetY": 0.03 }]
+    },
+    "pickOpen": {
+      "pitch": 16,
+      "offY": -0.07,
+      "neck2Pitch": 0,
+      "headPitch": 0,
+      "jaw": 34,
+      "F.dz": 0.04,
+      "_reach": [{ "param": "neck1Pitch", "lo": 0, "hi": 120, "tip": [0, 0.49, 0.43], "bone": "head", "targetY": 0.07 }]
+    },
+    "pickBite": { "_from": "pickOpen", "jaw": 28 },
+    "alarm": { "offY": -0.01, "pitch": -2, "neck1Pitch": -6, "hackles": 0.5, "earBack": -10, "tail1Pitch": 12 },
+    "barkBase": { "offY": -0.01, "neck1Pitch": 4, "headPitch": -8, "earBack": -8, "hackles": 0.2 },
+    "whine": { "offY": -0.02, "pitch": 3, "neck1Pitch": 18, "headPitch": 10, "earBack": 45, "tail1Pitch": -50, "tail2Pitch": -30 },
+    "sit": {
+      "pitch": -36,
+      "neck1Pitch": -15,
+      "headPitch": 14,
+      "H.low": -80,
+      "H.dz": 0.12,
+      "F.dz": -0.02,
+      "tail1Pitch": -70,
+      "tail2Pitch": -20,
+      "_reach": [{ "param": "offY", "lo": -0.4, "hi": 0.1, "group": ["pelvis", "thigh_L", "thigh_R", "shin_L", "shin_R"], "minW": 0.6, "targetY": 0.003 }]
+    },
+    "lie": {
+      "neck1Pitch": -12,
+      "headPitch": 8,
+      "F.dz": 0.24,
+      "F.low": -85,
+      "F.toe": 0,
+      "H.low": -80,
+      "H.dz": 0.15,
+      "H.dx": 0.03,
+      "tail1Pitch": -70,
+      "tail2Pitch": -30,
+      "_reach": [
+        {
+          "param": "offY",
+          "lo": -0.45,
+          "hi": 0.05,
+          "group": ["spine", "chest", "upperarm_L", "upperarm_R", "forearm_L", "forearm_R", "thigh_L", "thigh_R", "shin_L", "shin_R"],
+          "minW": 0.6,
+          "targetY": 0.003
+        }
+      ]
+    },
+    "swim": {
+      "legFloor": -5,
+      "pitch": -12,
+      "neck1Pitch": -45,
+      "headPitch": 30,
+      "earBack": 15,
+      "tail1Pitch": -75,
+      "tail2Pitch": -20,
+      "_reach": [{ "param": "offY", "lo": -0.7, "hi": 0, "group": ["spine", "chest", "pelvis"], "minW": 0.6, "targetY": -0.3 }],
+      "all.attach": 1
+    },
+    "crouch": { "offY": -0.09, "offZ": -0.02, "pitch": 4, "neck1Pitch": 10, "earBack": 10, "tail1Pitch": -20 },
+    "takeoff": {
+      "offY": 0.08,
+      "offZ": 0.15,
+      "pitch": -25,
+      "neck1Pitch": -15,
+      "F.dy": 0.2,
+      "F.dz": 0.18,
+      "F.low": 40,
+      "F.toe": 40,
+      "H.dz": -0.02,
+      "H.toe": -20,
+      "tail1Pitch": -30
+    },
+    "air": {
+      "offY": 0.6,
+      "offZ": 0.38,
+      "pitch": -8,
+      "neck1Pitch": -5,
+      "F.dy": 0.62,
+      "F.dz": 0.6,
+      "F.low": 30,
+      "F.toe": 20,
+      "H.dy": 0.58,
+      "H.dz": 0.3,
+      "H.low": 30,
+      "H.toe": 40,
+      "tail1Pitch": -40
+    },
+    "landFront": {
+      "offY": 0.47,
+      "offZ": 0.52,
+      "pitch": 12,
+      "neck1Pitch": 5,
+      "F.dy": 0.5,
+      "F.dz": 0.62,
+      "H.dy": 0.5,
+      "H.dz": 0.38,
+      "H.low": 30,
+      "H.toe": 30,
+      "tail1Pitch": -20
+    },
+    "onStep": { "offY": 0.5, "offZ": 0.62, "F.dy": 0.5, "F.dz": 0.62, "H.dy": 0.5, "H.dz": 0.62 }
+  },
+  "clips": {
+    "order": ["idle", "sit", "lie", "walk", "trot", "run", "sniff", "bark", "wag", "whine", "carry_trot", "carry_run", "pick_mouth", "drop_mouth", "alarm", "swim", "jump_up"],
+    "idle": {
+      "type": "still",
+      "seconds": 4,
+      "osc": { "offY": [0.0015, 5, 0], "chestPitch": [0.6, 5, 0.25], "tailYaw": [6, 2, 0] },
+      "tracks": {
+        "headYaw": [[0, 0], [0.7, 0], [1, 22], [1.9, 22], [2.3, -12], [3.2, -12], [3.6, 0], [4, 0]],
+        "headRoll": [[0, 0], [1, 0], [1.3, 8], [1.8, 8], [2.1, 0], [4, 0]],
+        "earBackL": [[0, 0], [2.6, 0], [2.7, 25], [2.85, 0], [4, 0]],
+        "earBackR": [[0, 0], [0.4, 0], [0.5, 20], [0.65, 0], [4, 0]]
+      }
+    },
+    "sit": {
+      "type": "still",
+      "seconds": 4,
+      "stance": "sit",
+      "osc": { "offY": [0.0012, 5, 0], "chestPitch": [0.6, 5, 0.25] },
+      "tracks": { "headYaw": [[0, 0], [1.2, 0], [1.5, 18], [2.6, 18], [3, 0], [4, 0]], "earBackL": [[0, 0], [2, 0], [2.1, 20], [2.25, 0], [4, 0]] }
+    },
+    "lie": {
+      "type": "still",
+      "seconds": 4,
+      "stance": "lie",
+      "osc": { "chestPitch": [0.8, 4, 0.25], "headPitch": [1.5, 1, 0] },
+      "tracks": { "headYaw": [[0, 0], [1.5, 0], [1.9, 15], [2.8, 15], [3.2, 0], [4, 0]], "earBackR": [[0, 0], [0.8, 0], [0.9, 20], [1.05, 0], [4, 0]] }
+    },
+    "walk": {
+      "type": "gait",
+      "seconds": 0.5333,
+      "strideM": 0.56,
+      "duty": 0.6,
+      "stance": "walkBase",
+      "phases": { "HL": 0, "FL": 0.25, "HR": 0.5, "FR": 0.75 },
+      "legs": { "F": { "liftM": 0.05, "lowSwingDeg": 45, "toeSwingDeg": 50 }, "H": { "liftM": 0.045, "lowSwingDeg": 20, "toeSwingDeg": 40 } },
+      "osc": { "offY": [0.005, 2, 0.1], "roll": [1.5, 1, 0], "neck1Pitch": [2, 2, 0.2], "tailYaw": [8, 1, 0], "headYaw": [3, 1, 0.25] }
+    },
+    "trot": {
+      "type": "gait",
+      "seconds": 0.4,
+      "strideM": 0.84,
+      "duty": 0.38,
+      "stance": "trotBase",
+      "phases": { "FL": 0, "HR": 0.02, "FR": 0.5, "HL": 0.52 },
+      "legs": { "F": { "liftM": 0.07, "lowSwingDeg": 70, "toeSwingDeg": 60 }, "H": { "liftM": 0.06, "lowSwingDeg": 30, "toeSwingDeg": 45 } },
+      "osc": { "offY": [0.008, 2, 0.05], "roll": [1.2, 1, 0], "tailYaw": [10, 1, 0.2] }
+    },
+    "run": {
+      "type": "gait",
+      "seconds": 0.3333,
+      "strideM": 1.5,
+      "duty": 0.22,
+      "stance": "runBase",
+      "phases": { "HL": 0, "HR": 0.1, "FR": 0.42, "FL": 0.52 },
+      "legs": { "F": { "liftM": 0.1, "lowSwingDeg": 90, "toeSwingDeg": 70 }, "H": { "liftM": 0.09, "lowSwingDeg": 40, "toeSwingDeg": 50 } },
+      "osc": {
+        "offY": [0.02, 1, 0.45],
+        "pitch": [5, 1, 0.1],
+        "chestPitch": [7, 1, 0.3],
+        "pelvisPitch": [9, 1, 0.8],
+        "neck1Pitch": [6, 1, 0.4],
+        "tail1Pitch": [8, 1, 0.3]
+      }
+    },
+    "sniff": {
+      "type": "still",
+      "seconds": 3,
+      "stance": "sniff",
+      "osc": {
+        "headYaw": [14, 1, 0],
+        "neckYaw": [6, 1, 0.1],
+        "offZ": [0.01, 2, 0.25],
+        "jaw": [3, 12, 0, 1],
+        "neck1Pitch": [2, 6, 0],
+        "tailYaw": [10, 3, 0]
+      }
+    },
+    "bark": {
+      "type": "still",
+      "seconds": 1,
+      "loop": false,
+      "stance": "barkBase",
+      "tracks": {
+        "jaw": [[0, 0], [0.1, 30], [0.22, 2], [0.4, 0], [0.5, 30], [0.62, 2], [1, 0]],
+        "headPitch": [[0, 0], [0.1, -10], [0.22, 2], [0.4, 0], [0.5, -10], [0.62, 2], [1, 0]],
+        "offZ": [[0, 0], [0.1, 0.015], [0.3, 0], [0.5, 0.015], [0.7, 0], [1, 0]],
+        "tail1Pitch": [[0, 0], [0.1, 10], [1, 0]]
+      }
+    },
+    "wag": { "type": "still", "seconds": 0.6, "only": ["tail1", "tail2", "tail3"], "osc": { "tailYaw": [35, 2, 0] } },
+    "whine": {
+      "type": "still",
+      "seconds": 2,
+      "stance": "whine",
+      "osc": {
+        "offY": [0.002, 12, 0],
+        "headPitch": [2, 4, 0],
+        "jaw": [4, 3, 0, 1],
+        "headYaw": [6, 1, 0],
+        "headRoll": [6, 1, 0.25],
+        "tailYaw": [12, 4, 0]
+      }
+    },
+    "carry_trot": {
+      "type": "gait",
+      "seconds": 0.4,
+      "strideM": 0.84,
+      "duty": 0.38,
+      "stance": "carryTrot",
+      "phases": { "FL": 0, "HR": 0.02, "FR": 0.5, "HL": 0.52 },
+      "legs": { "F": { "liftM": 0.07, "lowSwingDeg": 70, "toeSwingDeg": 60 }, "H": { "liftM": 0.06, "lowSwingDeg": 30, "toeSwingDeg": 45 } },
+      "osc": { "offY": [0.008, 2, 0.05], "roll": [1.2, 1, 0], "tailYaw": [10, 1, 0.2] }
+    },
+    "carry_run": {
+      "type": "gait",
+      "seconds": 0.3333,
+      "strideM": 1.5,
+      "duty": 0.22,
+      "stance": "carryRun",
+      "phases": { "HL": 0, "HR": 0.1, "FR": 0.42, "FL": 0.52 },
+      "legs": { "F": { "liftM": 0.1, "lowSwingDeg": 90, "toeSwingDeg": 70 }, "H": { "liftM": 0.09, "lowSwingDeg": 40, "toeSwingDeg": 50 } },
+      "osc": {
+        "offY": [0.02, 1, 0.45],
+        "pitch": [5, 1, 0.1],
+        "chestPitch": [7, 1, 0.3],
+        "pelvisPitch": [9, 1, 0.8],
+        "neck1Pitch": [3, 1, 0.4],
+        "tail1Pitch": [8, 1, 0.3]
+      }
+    },
+    "pick_mouth": {
+      "type": "still",
+      "seconds": 1.2,
+      "loop": false,
+      "seq": [[0, "stand"], [0.45, "pickOpen"], [0.6, "pickOpen"], [0.72, "pickBite"], [1.05, "carry"], [1.2, "carry"]]
+    },
+    "drop_mouth": {
+      "type": "still",
+      "seconds": 1.1,
+      "loop": false,
+      "seq": [[0, "carry"], [0.4, "pickBite"], [0.5, "pickOpen"], [0.65, "pickOpen"], [1.05, "stand"], [1.1, "stand"]]
+    },
+    "alarm": {
+      "type": "still",
+      "seconds": 1.6,
+      "stance": "alarm",
+      "osc": {
+        "jaw": [26, 8, 0, 1],
+        "headPitch": [-7, 8, 0.05],
+        "offZ": [0.012, 8, 0.1],
+        "F.dy": [0.025, 4, 0, 1],
+        "offY#2": [0.008, 4, 0.1, 1],
+        "tailYaw": [15, 4, 0]
+      },
+      "tracks": {
+        "headYaw": [[0, 0], [0.25, 28], [0.65, 28], [0.95, -28], [1.35, -28], [1.6, 0]],
+        "neckYaw": [[0, 0], [0.25, 14], [0.65, 14], [0.95, -14], [1.35, -14], [1.6, 0]]
+      }
+    },
+    "swim": {
+      "type": "paddle",
+      "seconds": 0.8,
+      "stance": "swim",
+      "mps": 1.6,
+      "waterline": true,
+      "phases": { "FL": 0, "HR": 0, "FR": 0.5, "HL": 0.5 },
+      "legs": {
+        "F": { "centerY": 0.06, "centerZ": 0.06, "ampYM": 0.07, "ampZM": 0.09, "lowDeg": 30, "lowAmpDeg": 30, "toeDeg": 20, "toeAmpDeg": 30 },
+        "H": { "centerY": 0.06, "centerZ": -0.06, "ampYM": 0.05, "ampZM": 0.08, "lowDeg": 10, "lowAmpDeg": 20, "toeDeg": 10, "toeAmpDeg": 25 }
+      },
+      "osc": { "offY": [0.008, 2, 0], "headPitch": [2, 2, 0.2], "tailYaw": [12, 1, 0] }
+    },
+    "jump_up": {
+      "type": "still",
+      "seconds": 1.1,
+      "loop": false,
+      "reportEnd": true,
+      "seq": [[0, "stand"], [0.25, "crouch"], [0.4, "takeoff"], [0.55, "air"], [0.7, "landFront"], [0.9, "onStep"], [1.1, "onStep"]]
+    }
+  }
+}

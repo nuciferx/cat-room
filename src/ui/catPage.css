@@ -1,0 +1,21 @@
+/* ห้องโชว์แมว : canvas เต็มจอ + แถบท่าด้านล่าง + ป้ายช่วยเหลือซ้ายบน + แผงจูน (lil-gui) ขวาบน */
+html, body { margin: 0; height: 100%; overflow: hidden; background: #dcecf7; font-family: system-ui, sans-serif; color: #1c2430; }
+canvas#stage { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+canvas#stage:active { cursor: grabbing; }
+
+.bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
+.current { background: rgba(255, 255, 255, 0.85); border-radius: 12px; padding: 4px 14px; font-weight: 600; pointer-events: none; }
+.current.is-paused { background: rgba(255, 224, 160, 0.92); }
+.clips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; pointer-events: auto; }
+.clip-btn { border: 0; border-radius: 10px; padding: 10px 14px; min-height: 44px; font: inherit; background: rgba(255, 255, 255, 0.85); color: inherit; cursor: pointer; }
+.clip-btn:hover { background: #fff; }
+.clip-btn.is-active { background: #2d5fd0; color: #fff; }
+
+.help { position: fixed; left: 8px; top: 8px; max-width: min(360px, calc(100vw - 16px)); padding: 8px 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.82); font-size: 13px; line-height: 1.5; pointer-events: none; }
+.help-row { display: flex; gap: 8px; }
+.help-row kbd { flex: 0 0 11em; font: inherit; font-weight: 600; }
+.is-hidden { display: none !important; }
+
+.banner { position: fixed; left: 50%; top: 12px; transform: translateX(-50%); max-width: calc(100vw - 32px); padding: 8px 16px; border-radius: 12px; background: rgba(120, 30, 30, 0.92); color: #fff; font-size: 14px; z-index: 10; word-break: break-word; }
+
+#tune-host { position: fixed; right: 8px; top: 8px; z-index: 5; }

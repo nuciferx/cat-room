@@ -1,0 +1,1476 @@
+{
+ "_note": "แมวเปอร์เซียครีม (ภาพ GPT ของเจ้าของงาน → Hunyuan3D 2mv ในเครื่อง → views_depink/project_views/cat_touchup --atlas · ไฟล์ต้นทางไม่เข้า git) → cat.glb (build_quad_meshy.py -- cat) · เริ่มจาก quad_meshy_dog.json ของ pp3 (7bd56e6) แล้ววัดใหม่ด้วย quad_measure.py · พิกัด glTF : x = ซ้ายของตัว y = ขึ้น z = หน้า เมตร",
+ "source": "F:/ai3d/out/cat/cat3_atlas.glb",
+ "out": "public/assets/models/cat/cat.glb",
+ "workDir": "shots/tmp.temp/cat_quad",
+ "fps": 30,
+ "frameStep": 2,
+ "budget": {
+  "tris": 10000,
+  "fileKB": 2000,
+  "texPx": 2048
+ },
+ "normalize": {
+  "_n": "lengthM null = สเกลจากสูงไหล่อย่างเดียว · สูงไหล่วัดที่ z กีบหน้า + withersOffsetZ (หลังคอ) · หน่วยไฟล์ต้นทาง",
+  "headSign": 1,
+  "lengthM": null,
+  "withersM": 0.29,
+  "hoofBand": 0.02,
+  "legSplitZ": 0.0,
+  "tailHalfWidth": 0,
+  "withersWindow": 0.02,
+  "withersOffsetZ": -0.05
+ },
+ "mesh": {
+  "targetTris": 9850,
+  "merge_distance": 1e-06,
+  "min_island_tris": 20,
+  "tolerance": 0.008,
+  "decimate_delimit": [],
+  "decimate_delimit_fallback": [],
+  "detail_factor": 1,
+  "detailStrength": 0.5,
+  "detailZones": [
+   {
+    "_n": "หัว หู หน้า",
+    "min": [
+     -0.13,
+     0.12,
+     0.05
+    ],
+    "max": [
+     0.13,
+     0.31,
+     0.21
+    ],
+    "strength": 0.25
+   },
+   {
+    "_n": "อุ้งเท้า",
+    "min": [
+     -0.1,
+     0,
+     -0.2
+    ],
+    "max": [
+     0.1,
+     0.03,
+     0.17
+    ],
+    "strength": 0.2
+   }
+  ]
+ },
+ "tailSplit": {
+  "_n": "bb : แยกพุ่มหางเป็นชิ้นต่างหาก (quad_meshy_tailsplit) · minTailVerts = หน้าที่มีจุดป้ายหางอย่างน้อยเท่านี้เป็นหาง · sinkFrac = ดึงปากหางเข้าหาโคน tail1 (0..1) · capFrac = จุดกลางผิวปิดรูก้น ดึงเข้าหาโคน tail1 (ผิวปิดเว้าเข้าเล็กน้อย)",
+  "minTailVerts": 2,
+  "sinkFrac": 0.85,
+  "capFrac": 0.2,
+  "addBoxes": [
+   {
+    "_n": "ลำหางด้านหลังก้น (ป้ายน้ำหนักนับเป็น pelvis)",
+    "min": [
+     -0.12,
+     0.17,
+     -0.3
+    ],
+    "max": [
+     0.12,
+     0.45,
+     -0.17
+    ]
+   }
+  ]
+ },
+ "bake": {
+  "_n": "อบภาพจากเมชละเอียด (quad_meshy_bake) · uvAngleRad = มุมตัดเกาะของ smart project · cageM/rayM = ระยะยิงรังสีจากผิวหยาบ (เมตร)",
+  "size": 2048,
+  "jpegQuality": 88,
+  "samples": 4,
+  "uvAngleRad": 1.15,
+  "uvMargin": 0.004,
+  "marginPx": 4,
+  "cageM": 0.03,
+  "rayM": 0.06,
+  "nearCage": {
+   "_n": "อบซ้ำเฉพาะหน้าด้วยระยะรังสีสั้น (ร่องตาลึก : ระยะ cageM ยิงไปโดนจมูก/สันจมูก → หัวตาเป็นแผ่นขาว/จุดชมพู) · ทั้งตัวใช้ระยะนี้ไม่ได้ (หาง/หลังเป็นจุดดำ) · region = กล่องพิกัด glTF ม.",
+   "cageM": 0.004,
+   "rayM": 0.02,
+   "region": {
+    "min": [
+     -0.13,
+     0.16,
+     0.11
+    ],
+    "max": [
+     0.13,
+     0.26,
+     0.24
+    ],
+    "growPx": 3,
+    "featherPx": 0
+   }
+  },
+  "alts": {
+   "blink": {
+    "_n": "ภาพหลับตา (cat_touchup --closed --atlas จาก cat2_depink) สำหรับกระพริบตาในเว็บ",
+    "source": "F:/ai3d/out/cat/cat3_closed_atlas.glb",
+    "out": "public/assets/models/cat/cat_blink.jpg",
+    "region": {
+     "_n": "เขตตา (พิกัด glTF ม.) ภาพหลับตาต่างจากภาพหลักได้เฉพาะสามเหลี่ยมที่มีจุดยอดในกล่องนี้ · กล่องต้องครอบหัวตา/หางตาและผนังแอ่งตาทั้งหมด (กล่องแคบเคยเหลือพิกเซลตาขาว/ชมพูของภาพหลักเป็นเส้นตอนหลับตา) · growPx/featherPx = ขยาย/เกลี่ยขอบในภาพ UV",
+     "min": [
+      -0.14,
+      0.16,
+      0.1
+     ],
+     "max": [
+      0.14,
+      0.25,
+      0.23
+     ],
+     "growPx": 4,
+     "featherPx": 3
+    }
+   },
+   "relaxed": {
+    "_n": "หน้าคลายเครียด (cat_touchup --face emotions/face_relaxed.webp --atlas จาก cat2_depink) สำหรับปุ่มสลับหน้าในห้องโชว์",
+    "source": "F:/ai3d/out/cat/cat3_relaxed_atlas.glb",
+    "out": "public/assets/models/cat/cat_relaxed.jpg",
+    "region": {
+     "_n": "เขตตา คิ้ว และปาก (ภาพนี้ต่างจากต้นฉบับทั้งตาและปาก) · ล่างลงมาถึงคาง",
+     "min": [
+      -0.14,
+      0.12,
+      0.1
+     ],
+     "max": [
+      0.14,
+      0.25,
+      0.24
+     ],
+     "growPx": 4,
+     "featherPx": 3
+    }
+   }
+  }
+ },
+ "material": {
+  "roughness": 0.92,
+  "specular": 0.15,
+  "normalStrength": 0.4,
+  "doubleSided": true
+ },
+ "rig": {
+  "_n": "วัดจาก quad_measure.py (shots/tmp.temp/cat_measure side/front) 2026-10-24 · แมวเปอร์เซียแทบไม่มีคอ หัวชิดอก · หางพุ่มขึ้นแล้วม้วนมาข้างหน้าเหนือหลัง",
+  "spine": [
+   [
+    0,
+    0.16,
+    -0.06
+   ],
+   [
+    0,
+    0.165,
+    0.03
+   ]
+  ],
+  "pelvis": [
+   [
+    0,
+    0.16,
+    -0.06
+   ],
+   [
+    0,
+    0.16,
+    -0.15
+   ]
+  ],
+  "chest": [
+   [
+    0,
+    0.165,
+    0.03
+   ],
+   [
+    0,
+    0.17,
+    0.09
+   ]
+  ],
+  "hackles": [
+   [
+    0,
+    0.16,
+    -0.06
+   ],
+   [
+    0,
+    0.22,
+    -0.06
+   ]
+  ],
+  "neck": [
+   [
+    0,
+    0.17,
+    0.09
+   ],
+   [
+    0,
+    0.185,
+    0.105
+   ],
+   [
+    0,
+    0.2,
+    0.12
+   ],
+   [
+    0,
+    0.19,
+    0.2
+   ]
+  ],
+  "jaw": [
+   [
+    0,
+    0.17,
+    0.15
+   ],
+   [
+    0,
+    0.16,
+    0.19
+   ]
+  ],
+  "ear": [
+   [
+    0.055,
+    0.26,
+    0.11
+   ],
+   [
+    0.08,
+    0.3,
+    0.11
+   ]
+  ],
+  "tail": [
+   [
+    0,
+    0.19,
+    -0.17
+   ],
+   [
+    0,
+    0.27,
+    -0.21
+   ],
+   [
+    0,
+    0.37,
+    -0.17
+   ],
+   [
+    0,
+    0.37,
+    -0.05
+   ]
+  ],
+  "front": [
+   [
+    0.055,
+    0.15,
+    0.09
+   ],
+   [
+    0.055,
+    0.09,
+    0.1
+   ],
+   [
+    0.055,
+    0.035,
+    0.11
+   ],
+   [
+    0.055,
+    0.012,
+    0.12
+   ],
+   [
+    0.055,
+    0,
+    0.15
+   ]
+  ],
+  "hind": [
+   [
+    0.055,
+    0.15,
+    -0.12
+   ],
+   [
+    0.055,
+    0.09,
+    -0.1
+   ],
+   [
+    0.055,
+    0.04,
+    -0.145
+   ],
+   [
+    0.055,
+    0.012,
+    -0.135
+   ],
+   [
+    0.055,
+    0,
+    -0.1
+   ]
+  ],
+  "extra": []
+ },
+ "weights": {
+  "_n": "ดูหัวไฟล์ quad_meshy_weights.py · พิกัด glTF เมตร",
+  "legs": {
+   "F": {
+    "topY": 0.09,
+    "zMin": 0.03,
+    "zMax": 0.18,
+    "radiusM": 0.06
+   },
+   "H": {
+    "topY": 0.1,
+    "zMin": -0.21,
+    "zMax": -0.06,
+    "radiusM": 0.055
+   }
+  },
+  "upperLegBiasM": 0.015,
+  "upperarmMaxY": 0.12,
+  "upperarmMaxZ": 0.11,
+  "tail": {
+   "fromZ": -0.19,
+   "aboveY": [
+    [
+     -0.2,
+     0.23
+    ],
+    [
+     -0.13,
+     0.23
+    ],
+    [
+     -0.1,
+     0.27
+    ],
+    [
+     0.0,
+     0.27
+    ]
+   ],
+   "aboveMaxZ": 0.0,
+   "halfWidthM": 0.2,
+   "radiusM": 0.13
+  },
+  "ear": {
+   "radiusM": 0.03,
+   "minAbsX": 0.04,
+   "_n": "ใบหูแมวอยู่หลังเส้นแบ่งหัว/คอ (ป้ายเดิม neck2) → fromBones ให้หูแย่งจาก neck2 ได้ · maxDzM/minY ตัดขนหน้าผากด้านหน้าและหัวใต้โคนหู (เดิมกระดูกหูขยับขนใต้หู ใบหูไม่ขยับ)",
+   "fromBones": [
+    "head",
+    "neck2"
+   ],
+   "maxDzM": 0.025,
+   "minY": 0.25
+  },
+  "jaw": {
+   "fromZ": 0.15,
+   "halfWidthM": 0.03,
+   "lip": [
+    [
+     0.15,
+     0.165
+    ],
+    [
+     0.2,
+     0.165
+    ]
+   ]
+  },
+  "rigidBoxes": [],
+  "mane": {
+   "surface": [
+    [
+     -0.25,
+     1.0
+    ],
+    [
+     0.25,
+     1.0
+    ]
+   ],
+   "fromZ": -0.2,
+   "toZ": 0.15,
+   "spanM": 0.02,
+   "fromBones": []
+  },
+  "blendPairs": {
+   "upperarm": [
+    "chest",
+    0.025
+   ],
+   "forearm": [
+    "upperarm",
+    0.015
+   ],
+   "frontfoot": [
+    "forearm",
+    0.0125
+   ],
+   "fronttoe": [
+    "frontfoot",
+    0.0075
+   ],
+   "thigh": [
+    "pelvis",
+    0.025
+   ],
+   "shin": [
+    "thigh",
+    0.015
+   ],
+   "hindfoot": [
+    "shin",
+    0.0125
+   ],
+   "hindtoe": [
+    "hindfoot",
+    0.0075
+   ],
+   "spine": [
+    "pelvis",
+    0.025
+   ],
+   "chest": [
+    "spine",
+    0.025
+   ],
+   "neck1": [
+    "chest",
+    0.02
+   ],
+   "neck2": [
+    "neck1",
+    0.0175
+   ],
+   "head": [
+    "neck2",
+    0.05
+   ],
+   "tail1": [
+    "pelvis",
+    0.025
+   ],
+   "tail2": [
+    "tail1",
+    0.03
+   ],
+   "tail3": [
+    "tail2",
+    0.03
+   ],
+   "ear": [
+    "head",
+    0.0075
+   ],
+   "jaw": [
+    "head",
+    0.01
+   ]
+  },
+  "smoothIters": 8,
+  "legCrossM": 0.01,
+  "legMaxY": 0.14,
+  "minWeight": 0.01,
+  "maxInfluences": 4
+ },
+ "stancesNote": "ยกจาก quad_meshy_dog.json ของ pp3 · ตัดท่าคาบของ/เห่า/ว่ายน้ำ · ค่าระยะ (offY strideM liftM *.dz) คูณ 0.45 ตามความยาวขา · ยังไม่ได้ปรับเป็นท่าแมว · walk จาก clip_02 (รอบ 1.0 วิ ข้อมือพับตอนยก) · lie_down + lie จาก clip_03 (2026-10-24)",
+ "stances": {
+  "walkBase": {
+   "offY": -0.002
+  },
+  "trotBase": {
+   "offY": -0.009,
+   "neck1Pitch": 6,
+   "tail1Pitch": -10
+  },
+  "runBase": {
+   "offY": -0.018,
+   "neck1Pitch": 18,
+   "headPitch": -6,
+   "earBack": 30,
+   "tail1Pitch": -15,
+   "tail2Pitch": -5
+  },
+  "sniff": {
+   "pitch": 20,
+   "offY": -0.0405,
+   "neck2Pitch": 0,
+   "headPitch": 10,
+   "F.dz": 0.027,
+   "earBack": 10,
+   "tail1Pitch": -10,
+   "_reach": [
+    {
+     "param": "neck1Pitch",
+     "lo": 0,
+     "hi": 95,
+     "tip": [
+      0,
+      0.46,
+      0.44
+     ],
+     "bone": "head",
+     "targetY": 0.03
+    }
+   ]
+  },
+  "alarm": {
+   "offY": -0.0045,
+   "pitch": -2,
+   "neck1Pitch": -6,
+   "hackles": 0.5,
+   "earBack": -10,
+   "tail1Pitch": 12
+  },
+  "sit": {
+   "pitch": -30,
+   "neck1Pitch": 0,
+   "headPitch": -4,
+   "H.low": -80,
+   "H.dz": 0.05,
+   "F.dz": 0.0,
+   "tail1Pitch": -15,
+   "tail2Pitch": 0,
+   "_reach": [
+    {
+     "param": "offY",
+     "lo": -0.4,
+     "hi": 0.1,
+     "group": [
+      "pelvis",
+      "spine",
+      "thigh_L",
+      "thigh_R",
+      "tail1"
+     ],
+     "minW": 0.3,
+     "targetY": 0.003
+    },
+    {
+     "param": "pitch",
+     "lo": -60,
+     "hi": 0,
+     "group": [
+      "fronttoe_L",
+      "fronttoe_R",
+      "frontfoot_L",
+      "frontfoot_R"
+     ],
+     "minW": 0.5,
+     "targetY": 0.004
+    },
+    {
+     "param": "offY",
+     "lo": -0.4,
+     "hi": 0.1,
+     "group": [
+      "pelvis",
+      "spine",
+      "thigh_L",
+      "thigh_R",
+      "tail1"
+     ],
+     "minW": 0.3,
+     "targetY": 0.003
+    },
+    {
+     "param": "pitch",
+     "lo": -60,
+     "hi": 0,
+     "group": [
+      "fronttoe_L",
+      "fronttoe_R",
+      "frontfoot_L",
+      "frontfoot_R"
+     ],
+     "minW": 0.5,
+     "targetY": 0.004
+    },
+    {
+     "param": "offY",
+     "lo": -0.4,
+     "hi": 0.1,
+     "group": [
+      "pelvis",
+      "spine",
+      "thigh_L",
+      "thigh_R",
+      "tail1"
+     ],
+     "minW": 0.3,
+     "targetY": 0.003
+    }
+   ],
+   "chestPitch": 6,
+   "tailYaw": 0,
+   "tail3Pitch": 0,
+   "pelvisPitch": 40
+  },
+  "lie": {
+   "neck1Pitch": -12,
+   "headPitch": 8,
+   "F.dz": 0.108,
+   "F.low": -85,
+   "F.toe": 0,
+   "H.low": -80,
+   "H.dz": 0.09,
+   "tail1Pitch": -75,
+   "tail2Pitch": -20,
+   "_reach": [
+    {
+     "param": "offY",
+     "lo": -0.45,
+     "hi": 0.05,
+     "group": [
+      "spine",
+      "chest",
+      "pelvis"
+     ],
+     "minW": 0.6,
+     "targetY": 0.015
+    }
+   ],
+   "tail3Pitch": 10,
+   "tailYaw": 170,
+   "pitch": -6,
+   "H.dx": 0.02
+  },
+  "crouch": {
+   "offY": -0.0405,
+   "offZ": -0.02,
+   "pitch": 4,
+   "neck1Pitch": 10,
+   "earBack": 10,
+   "tail1Pitch": -20
+  },
+  "takeoff": {
+   "offY": 0.03,
+   "offZ": 0.08,
+   "pitch": -25,
+   "neck1Pitch": -15,
+   "F.dy": 0.09,
+   "F.dz": 0.12,
+   "F.low": 40,
+   "F.toe": 40,
+   "H.dz": 0.0,
+   "H.toe": -20,
+   "tail1Pitch": -30
+  },
+  "air": {
+   "offY": 0.15,
+   "offZ": 0.25,
+   "pitch": -8,
+   "neck1Pitch": -5,
+   "F.dy": 0.17,
+   "F.dz": 0.3,
+   "F.low": 30,
+   "F.toe": 20,
+   "H.dy": 0.14,
+   "H.dz": 0.18,
+   "H.low": 30,
+   "H.toe": 40,
+   "tail1Pitch": -40
+  },
+  "landFront": {
+   "offY": 0.12,
+   "offZ": 0.34,
+   "pitch": 12,
+   "neck1Pitch": 5,
+   "F.dy": 0.12,
+   "F.dz": 0.37,
+   "H.dy": 0.1,
+   "H.dz": 0.24,
+   "H.low": 30,
+   "H.toe": 30,
+   "tail1Pitch": -20
+  },
+  "onStep": {
+   "offY": 0.12,
+   "offZ": 0.4,
+   "F.dy": 0.12,
+   "F.dz": 0.4,
+   "H.dy": 0.12,
+   "H.dz": 0.4
+  },
+  "lieSquare": {
+   "_from": "lie",
+   "roll": 0,
+   "HR.dx": 0,
+   "HL.dx": 0,
+   "H.dx": 0.02,
+   "neck1Pitch": 14,
+   "headPitch": 12
+  },
+  "lookDown": {
+   "neck1Pitch": 22,
+   "headPitch": 12,
+   "earBack": 5,
+   "tail1Pitch": -10
+  },
+  "chestDown": {
+   "pitch": 14,
+   "offY": -0.03,
+   "neck1Pitch": 12,
+   "headPitch": 10,
+   "F.dz": 0.07,
+   "F.low": -70,
+   "F.toe": 0,
+   "earBack": 5,
+   "tail1Pitch": -30
+  }
+ },
+ "clips": {
+  "order": [
+   "idle",
+   "sit",
+   "lie",
+   "lie_down",
+   "walk",
+   "trot",
+   "run",
+   "sniff",
+   "wag",
+   "alarm",
+   "jump_up"
+  ],
+  "idle": {
+   "type": "still",
+   "seconds": 4,
+   "osc": {
+    "offY": [
+     0.00068,
+     5,
+     0
+    ],
+    "chestPitch": [
+     0.6,
+     5,
+     0.25
+    ],
+    "tailYaw": [
+     6,
+     2,
+     0
+    ]
+   },
+   "tracks": {
+    "headYaw": [
+     [
+      0,
+      0
+     ],
+     [
+      0.7,
+      0
+     ],
+     [
+      1,
+      22
+     ],
+     [
+      1.9,
+      22
+     ],
+     [
+      2.3,
+      -12
+     ],
+     [
+      3.2,
+      -12
+     ],
+     [
+      3.6,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "headRoll": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1.3,
+      8
+     ],
+     [
+      1.8,
+      8
+     ],
+     [
+      2.1,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "earBackL": [
+     [
+      0,
+      0
+     ],
+     [
+      2.6,
+      0
+     ],
+     [
+      2.68,
+      40
+     ],
+     [
+      2.78,
+      8
+     ],
+     [
+      2.86,
+      38
+     ],
+     [
+      3.05,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "earBackR": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0
+     ],
+     [
+      0.48,
+      35
+     ],
+     [
+      0.68,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "earSpreadL": [
+     [
+      0,
+      0
+     ],
+     [
+      2.6,
+      0
+     ],
+     [
+      2.68,
+      12
+     ],
+     [
+      2.78,
+      3
+     ],
+     [
+      2.86,
+      12
+     ],
+     [
+      3.05,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ]
+   }
+  },
+  "sit": {
+   "type": "still",
+   "seconds": 4,
+   "stance": "sit",
+   "osc": {
+    "offY": [
+     0.00054,
+     5,
+     0
+    ],
+    "chestPitch": [
+     0.6,
+     5,
+     0.25
+    ]
+   },
+   "tracks": {
+    "headYaw": [
+     [
+      0,
+      0
+     ],
+     [
+      1.2,
+      0
+     ],
+     [
+      1.5,
+      18
+     ],
+     [
+      2.6,
+      18
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "earBackL": [
+     [
+      0,
+      0
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      2.1,
+      20
+     ],
+     [
+      2.25,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ]
+   }
+  },
+  "lie": {
+   "type": "still",
+   "seconds": 4,
+   "stance": "lie",
+   "osc": {
+    "chestPitch": [
+     0.8,
+     4,
+     0.25
+    ],
+    "headPitch": [
+     1.5,
+     1,
+     0
+    ]
+   },
+   "tracks": {
+    "headYaw": [
+     [
+      0,
+      0
+     ],
+     [
+      1.5,
+      0
+     ],
+     [
+      1.9,
+      15
+     ],
+     [
+      2.8,
+      15
+     ],
+     [
+      3.2,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "earBackR": [
+     [
+      0,
+      0
+     ],
+     [
+      0.8,
+      0
+     ],
+     [
+      0.9,
+      20
+     ],
+     [
+      1.05,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ]
+   }
+  },
+  "walk": {
+   "type": "gait",
+   "seconds": 1.0,
+   "strideM": 0.12,
+   "duty": 0.62,
+   "stance": "walkBase",
+   "phases": {
+    "HL": 0,
+    "FL": 0.25,
+    "HR": 0.5,
+    "FR": 0.75
+   },
+   "legs": {
+    "F": {
+     "liftM": 0.012,
+     "lowSwingDeg": 20,
+     "toeSwingDeg": 35,
+     "reachM": 0.015
+    },
+    "H": {
+     "liftM": 0.012,
+     "lowSwingDeg": 10,
+     "toeSwingDeg": 25
+    }
+   },
+   "osc": {
+    "offY": [
+     0.0015,
+     2,
+     0.1
+    ],
+    "roll": [
+     1.0,
+     1,
+     0
+    ],
+    "neck1Pitch": [
+     1.5,
+     2,
+     0.2
+    ],
+    "tailYaw": [
+     6,
+     1,
+     0
+    ],
+    "headYaw": [
+     2,
+     1,
+     0.25
+    ]
+   }
+  },
+  "trot": {
+   "type": "gait",
+   "seconds": 0.4,
+   "strideM": 0.2,
+   "duty": 0.38,
+   "stance": "trotBase",
+   "phases": {
+    "FL": 0,
+    "HR": 0.02,
+    "FR": 0.5,
+    "HL": 0.52
+   },
+   "legs": {
+    "F": {
+     "liftM": 0.02,
+     "lowSwingDeg": 25,
+     "toeSwingDeg": 30,
+     "reachM": 0.015
+    },
+    "H": {
+     "liftM": 0.018,
+     "lowSwingDeg": 15,
+     "toeSwingDeg": 25
+    }
+   },
+   "osc": {
+    "offY": [
+     0.0036,
+     2,
+     0.05
+    ],
+    "roll": [
+     1.2,
+     1,
+     0
+    ],
+    "tailYaw": [
+     10,
+     1,
+     0.2
+    ]
+   }
+  },
+  "run": {
+   "type": "gait",
+   "seconds": 0.3333,
+   "strideM": 0.3,
+   "duty": 0.22,
+   "stance": "runBase",
+   "phases": {
+    "HL": 0,
+    "HR": 0.1,
+    "FR": 0.42,
+    "FL": 0.52
+   },
+   "legs": {
+    "F": {
+     "liftM": 0.03,
+     "lowSwingDeg": 35,
+     "toeSwingDeg": 35,
+     "reachM": 0.015
+    },
+    "H": {
+     "liftM": 0.028,
+     "lowSwingDeg": 20,
+     "toeSwingDeg": 30
+    }
+   },
+   "osc": {
+    "offY": [
+     0.009,
+     1,
+     0.45
+    ],
+    "pitch": [
+     5,
+     1,
+     0.1
+    ],
+    "chestPitch": [
+     7,
+     1,
+     0.3
+    ],
+    "pelvisPitch": [
+     9,
+     1,
+     0.8
+    ],
+    "neck1Pitch": [
+     6,
+     1,
+     0.4
+    ],
+    "tail1Pitch": [
+     8,
+     1,
+     0.3
+    ]
+   }
+  },
+  "sniff": {
+   "type": "still",
+   "seconds": 3,
+   "stance": "sniff",
+   "osc": {
+    "headYaw": [
+     14,
+     1,
+     0
+    ],
+    "neckYaw": [
+     6,
+     1,
+     0.1
+    ],
+    "offZ": [
+     0.01,
+     2,
+     0.25
+    ],
+    "jaw": [
+     3,
+     12,
+     0,
+     1
+    ],
+    "neck1Pitch": [
+     2,
+     6,
+     0
+    ],
+    "tailYaw": [
+     10,
+     3,
+     0
+    ]
+   }
+  },
+  "wag": {
+   "type": "still",
+   "seconds": 0.6,
+   "only": [
+    "tail1",
+    "tail2",
+    "tail3"
+   ],
+   "osc": {
+    "tailYaw": [
+     35,
+     2,
+     0
+    ]
+   }
+  },
+  "alarm": {
+   "type": "still",
+   "seconds": 1.6,
+   "stance": "alarm",
+   "osc": {
+    "jaw": [
+     26,
+     8,
+     0,
+     1
+    ],
+    "headPitch": [
+     -7,
+     8,
+     0.05
+    ],
+    "offZ": [
+     0.012,
+     8,
+     0.1
+    ],
+    "F.dy": [
+     0.025,
+     4,
+     0,
+     1
+    ],
+    "offY#2": [
+     0.008,
+     4,
+     0.1,
+     1
+    ],
+    "tailYaw": [
+     15,
+     4,
+     0
+    ]
+   },
+   "tracks": {
+    "headYaw": [
+     [
+      0,
+      0
+     ],
+     [
+      0.25,
+      28
+     ],
+     [
+      0.65,
+      28
+     ],
+     [
+      0.95,
+      -28
+     ],
+     [
+      1.35,
+      -28
+     ],
+     [
+      1.6,
+      0
+     ]
+    ],
+    "neckYaw": [
+     [
+      0,
+      0
+     ],
+     [
+      0.25,
+      14
+     ],
+     [
+      0.65,
+      14
+     ],
+     [
+      0.95,
+      -14
+     ],
+     [
+      1.35,
+      -14
+     ],
+     [
+      1.6,
+      0
+     ]
+    ]
+   }
+  },
+  "jump_up": {
+   "type": "still",
+   "seconds": 1.1,
+   "loop": false,
+   "reportEnd": true,
+   "seq": [
+    [
+     0,
+     "stand"
+    ],
+    [
+     0.25,
+     "crouch"
+    ],
+    [
+     0.4,
+     "takeoff"
+    ],
+    [
+     0.55,
+     "air"
+    ],
+    [
+     0.7,
+     "landFront"
+    ],
+    [
+     0.9,
+     "onStep"
+    ],
+    [
+     1.1,
+     "onStep"
+    ]
+   ]
+  },
+  "lie_down": {
+   "type": "still",
+   "seconds": 2.6,
+   "loop": false,
+   "seq": [
+    [
+     0,
+     "stand"
+    ],
+    [
+     0.5,
+     "lookDown"
+    ],
+    [
+     1.2,
+     "chestDown"
+    ],
+    [
+     1.8,
+     "lieSquare"
+    ],
+    [
+     2.3,
+     "lie"
+    ],
+    [
+     2.6,
+     "lie"
+    ]
+   ]
+  }
+ },
+ "preview": {
+  "dir": "shots/tmp.temp/cat_quad",
+  "cell": 360,
+  "floorSizeM": 8,
+  "scale": 0.6,
+  "center": [
+   0,
+   0.17,
+   -0.02
+  ],
+  "floorRGBA": [
+   0.45,
+   0.62,
+   0.4,
+   1
+  ],
+  "skyRGB": [
+   0.8,
+   0.83,
+   0.86
+  ],
+  "fractions": [
+   0,
+   0.25,
+   0.5,
+   0.75
+  ],
+  "views": [
+   {
+    "_n": "หน้า",
+    "tiltDeg": 88,
+    "turnDeg": 0
+   },
+   {
+    "_n": "ข้างซ้าย",
+    "tiltDeg": 88,
+    "turnDeg": 90
+   },
+   {
+    "_n": "มุมเกม yaw -30 เฉียงลง",
+    "tiltDeg": 45,
+    "turnDeg": -30
+   }
+  ]
+ }
+}

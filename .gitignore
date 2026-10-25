@@ -1,0 +1,13 @@
+node_modules/
+dist/
+shots/tmp.temp/
+*.temp.*
+__pycache__/
+.claude/
+# ชุดเมืองย้ายไป F:/game/cat_dis/city_pack แล้ว
+CAT_DISTRICT_AI_CITY/
+# ภาพ GPT / ภาพอ้างอิง / ไฟล์ต้นทาง Meshy-Hunyuan ไม่เข้า git (docs/ASSETS.md)
+*.webp
+ref/
+source.glb
+Meshy_AI_*
