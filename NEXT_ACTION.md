@@ -26,10 +26,9 @@
 
 ใส่ไฟล์ที่ `F:/ai3d/in/cat/` · ถ้าเลือกทาง A อัปโหลดเข้า Meshy แล้ววาง glb ที่ `shots/tmp.temp/meshy_cat/source.glb`
 
-## 3. ตั้ง repo (session หลักทำ · ขออนุมัติก่อนสร้าง remote)
+## 3. repo (เสร็จ 2026-10-25)
 
-- `git init` + `.gitignore` (มีแล้ว) + commit เอกสารชุดแรก
-- ✋ สร้าง GitHub repo private หรือไม่ ชื่ออะไร (ส่งออกข้างนอก = ต้องอนุมัติ)
+- repo public https://github.com/nuciferx/cat-room · เว็บห้องแมว https://nuciferx.github.io/cat-room/ (push main → workflow `pages.yml` build + deploy เอง)
 
 ## 4. คัดลอกสายสี่ขาจาก pp3 (haiku ค้น → sonnet คัดลอกและปรับ path)
 

@@ -121,3 +121,5 @@
   - เครื่องมือตรวจท่าแบบ numpy ใน scratchpad (`som_pose.py` `render_som.py` `dump_skin.py`) วัด minY ยืด มุมหัว ต่อคลิป
   - `som.glb` 9,760 สามเหลี่ยม 1,689 KB · check ผ่าน · `cat` check ผ่าน (cat.glb/cat_*.jpg ไม่ได้สร้างใหม่)
   - ห้องโชว์ : `constants/faces.ts` เป็น `FACE_SETS` ต่อโมเดล (หน้าแรก = หน้าเริ่มต้น กระพริบ) · แถบหน้าเปลี่ยนชุดตามแมวที่แสดง (`faceViewOf` : 2.5D ใช้ของมุ่ยแบบเดิม) · แต่ละตัวจำหน้าของตัวเอง · ทุกโมเดลกระพริบ · locales `face.normal/smile/happy/sad/wink/sleepy` · `tsc` + `npm run build` ผ่าน · ยังไม่ได้ดูในเบราว์เซอร์
+
+- **ห้องแมวขึ้นเว็บ** (2026-10-25 เจ้าของงานอนุมัติ public + ชื่อ cat-room) : `git init` · asset อ้างแบบสัมพัทธ์ + vite `base: './'` · workflow `.github/workflows/pages.yml` · repo https://github.com/nuciferx/cat-room · เว็บ https://nuciferx.github.io/cat-room/ (หน้าแรก = cat.html) · ตรวจ HEAD 200 ทั้งหน้าและ glb · commit ใช้อีเมล noreply ของ GitHub (ตั้งเฉพาะ repo นี้) · `.gitignore` เพิ่ม `.claude/` และ `CAT_DISTRICT_AI_CITY/` · `quad_meshy_somtest.json` ไม่เข้า git (รอลบ) · ยังไม่ได้เปิดเว็บดูในเบราว์เซอร์
