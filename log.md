@@ -123,3 +123,11 @@
   - ห้องโชว์ : `constants/faces.ts` เป็น `FACE_SETS` ต่อโมเดล (หน้าแรก = หน้าเริ่มต้น กระพริบ) · แถบหน้าเปลี่ยนชุดตามแมวที่แสดง (`faceViewOf` : 2.5D ใช้ของมุ่ยแบบเดิม) · แต่ละตัวจำหน้าของตัวเอง · ทุกโมเดลกระพริบ · locales `face.normal/smile/happy/sad/wink/sleepy` · `tsc` + `npm run build` ผ่าน · ยังไม่ได้ดูในเบราว์เซอร์
 
 - **ห้องแมวขึ้นเว็บ** (2026-10-25 เจ้าของงานอนุมัติ public + ชื่อ cat-room) : `git init` · asset อ้างแบบสัมพัทธ์ + vite `base: './'` · workflow `.github/workflows/pages.yml` · repo https://github.com/nuciferx/cat-room · เว็บ https://nuciferx.github.io/cat-room/ (หน้าแรก = cat.html) · ตรวจ HEAD 200 ทั้งหน้าและ glb · commit ใช้อีเมล noreply ของ GitHub (ตั้งเฉพาะ repo นี้) · `.gitignore` เพิ่ม `.claude/` และ `CAT_DISTRICT_AI_CITY/` · `quad_meshy_somtest.json` ไม่เข้า git (รอลบ) · ยังไม่ได้เปิดเว็บดูในเบราว์เซอร์
+
+## 2026-10-25 — ห้องโชว์บนมือถือ (เจ้าของงานแจ้ง "ทุกอย่างบาง มองไม่เห็นรูป")
+
+- ตรวจจากโค้ด : (1) แถบปุ่ม 4 ชุด `flex-wrap` ปุ่มสูง 44 → จอ ~380 px พับหลายแถวบังแมว + `.help` ซ้ายบนบังอีก **ยืนยันจากโค้ด** · (2) `actorLoader` โหลดภาพ 2.5D ทุกแบบตอนเปิดหน้า (`cat/idle_sheet.png` 12288×2048 = ~100 MB หลังถอดรหัส · png รวม ~30 MB + jpg 6 ภาพ) → **ยืนยันจากโค้ด/ขนาดไฟล์ว่าหนัก** แต่ว่าเป็นต้นเหตุจริงของเครื่องเจ้าของงานหรือไม่ **เดา** (ยังไม่เห็นเครื่อง) · (3) กล้อง `distStartM` 1.1 คงที่ ไม่ดู aspect → จอตั้ง (กว้างมองเห็น ~0.37 ม.) แมวยาว ~0.5 ม. ล้นข้าง **ยืนยันจากการคำนวณ** · (4) pixelRatio สูงสุด 2 + เงา 2048 บนมือถือ **ยืนยันจากโค้ด** ว่าหนักกว่าจำเป็น
+- แก้ : `ui/layoutMode.ts` (ตัดสิน compact ที่เดียว) · `ui/catPage.css` (กฎ `.is-compact`) · `ui/helpToggle.ts` + ปุ่ม `#help-toggle` · `logic/cameraFit.ts` + `cameraRig.setLayout` · `render/dualActor.ts` `ensureView` (โหลดแบบอื่นเมื่อสลับครั้งแรก) · `app/actorLoader.ts` (`LoaderEnv`) · `data/spriteLoader.ts` + `logic/pngSize.ts` (อ่านขนาด png จากหัวไฟล์ด้วย Range ก่อนถอดรหัส ข้ามแผ่นที่เกิน `maxTextureSize`) · `app/contextLoss.ts` · `stage.apply/resize(…, compact)` · `Banner.hide`
+- config ใหม่ : `camera.fitWidthM/fitHeightM` · `render.touchPixelRatioMax/touchShadowMapSize` · `layout.compactMaxWidthPx/insetMaxFrac` · `ui.warnS` · locales th/en ครบ (ข้อความ + ชื่อในแผง F1)
+- `tsc` + `npm run build` ผ่าน · ยังไม่ได้ลองในเบราว์เซอร์/มือถือจริง · ยังไม่ commit
+

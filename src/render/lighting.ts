@@ -5,7 +5,8 @@ import type { CatConfig } from '../data/config';
 import { sunDirection } from '../logic/orbit';
 
 export interface Lighting {
-  apply(cfg: CatConfig): void;
+  /** compact = จอสัมผัส/จอแคบ : ลดขนาดแผนที่เงา */
+  apply(cfg: CatConfig, compact: boolean): void;
 }
 
 export function createLighting(scene: Scene, shadowsOn: boolean): Lighting {
@@ -14,11 +15,11 @@ export function createLighting(scene: Scene, shadowsOn: boolean): Lighting {
   sun.castShadow = shadowsOn;
   scene.add(hemi, sun, sun.target);
 
-  const applyShadow = (cfg: CatConfig['shadow']): void => {
-    if (sun.shadow.mapSize.x !== cfg.mapSize.value) {
+  const applyShadow = (cfg: CatConfig['shadow'], mapSize: number): void => {
+    if (sun.shadow.mapSize.x !== mapSize) {
       sun.shadow.map?.dispose();
       sun.shadow.map = null;
-      sun.shadow.mapSize.set(cfg.mapSize.value, cfg.mapSize.value);
+      sun.shadow.mapSize.set(mapSize, mapSize);
     }
     const half = cfg.frustumHalfM.value;
     const cam = sun.shadow.camera;
@@ -35,7 +36,7 @@ export function createLighting(scene: Scene, shadowsOn: boolean): Lighting {
   };
 
   return {
-    apply(cfg) {
+    apply(cfg, compact) {
       const l = cfg.light;
       hemi.intensity = l.hemiIntensity.value;
       hemi.color = new Color(l.hemiSkyColor.value);
@@ -45,7 +46,8 @@ export function createLighting(scene: Scene, shadowsOn: boolean): Lighting {
       const dir = sunDirection(l.sunAzimuthDeg.value, l.sunElevationDeg.value);
       const dist = l.sunDistanceM.value;
       sun.position.set(dir.x * dist, dir.y * dist, dir.z * dist);
-      applyShadow(cfg.shadow);
+      const size = compact ? Math.min(cfg.shadow.mapSize.value, cfg.render.touchShadowMapSize.value) : cfg.shadow.mapSize.value;
+      applyShadow(cfg.shadow, size);
     },
   };
 }

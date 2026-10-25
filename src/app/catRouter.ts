@@ -41,12 +41,16 @@ function syncFaceBar(ctx: ShowroomCtx): void {
   ctx.faceBar.setActive(ctx.state.faceIndex[model]);
 }
 
-/** สลับแบบแมว (3D · 2.5D) · ไม่มีแบบนั้น = แจ้งเตือน · สลับแล้วเล่นท่าเดิมซ้ำ (แจ้งถ้าแบบใหม่ไม่มีท่านี้) */
-export function setView(ctx: ShowroomCtx, index: number): void {
-  if (!ctx.actor.setView(VIEW_NAMES[index])) {
-    ctx.banner.show(ctx.locale.t('error.viewMissing'), ctx.cfg.ui.toastS.value);
-    return;
-  }
+/** สลับแบบแมว (3D · 2.5D) · แบบที่ยังไม่โหลดจะโหลดก่อน (ขึ้นแถบกำลังโหลด) · โหลดไม่ได้ = ผู้โหลดแจ้งเตือนแล้ว อยู่แบบเดิม
+ *  สลับแล้วเล่นท่าเดิมซ้ำ (แจ้งถ้าแบบใหม่ไม่มีท่านี้) · คำขอเก่าที่เสร็จหลังคำขอใหม่ถูกทิ้ง */
+export async function setView(ctx: ShowroomCtx, index: number): Promise<void> {
+  const name = VIEW_NAMES[index];
+  const token = ++ctx.state.viewRequest;
+  const needsLoad = !ctx.actor.hasView(name);
+  if (needsLoad) ctx.banner.show(ctx.locale.t('app.loading'), ctx.cfg.ui.warnS.value);
+  const loaded = await ctx.actor.ensureView(name);
+  if (token !== ctx.state.viewRequest || !loaded || !ctx.actor.setView(name)) return;
+  if (needsLoad) ctx.banner.hide();
   ctx.state.viewIndex = index;
   ctx.viewBar.setActive(index);
   syncFaceBar(ctx);
@@ -68,7 +72,7 @@ function runAction(ctx: ShowroomCtx, action: Action): void {
       setClip(ctx, s.clipIndex);
       break;
     case ACTION.nextView:
-      setView(ctx, stepView(s, VIEW_NAMES.length));
+      void setView(ctx, stepView(s, VIEW_NAMES.length));
       break;
     case ACTION.nextFace: {
       const model = faceModel(ctx);

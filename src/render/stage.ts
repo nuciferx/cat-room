@@ -12,8 +12,11 @@ import { makeSkyTexture } from './sky';
 export interface Stage {
   scene: Scene;
   floor: Floor;
-  apply(cfg: CatConfig): void;
-  resize(width: number, height: number, cfg: CatConfig): void;
+  /** ขนาดภาพสูงสุดต่อด้านที่การ์ดจอรองรับ (พิกเซล) */
+  maxTextureSize: number;
+  /** compact = จอสัมผัส/จอแคบ : pixelRatio และแผนที่เงาเบาลง */
+  apply(cfg: CatConfig, compact: boolean): void;
+  resize(width: number, height: number, cfg: CatConfig, compact: boolean): void;
   render(camera: Camera): void;
 }
 
@@ -47,15 +50,17 @@ export function createStage(canvas: HTMLCanvasElement, low: boolean, gridOn: boo
   return {
     scene,
     floor,
-    apply(cfg) {
+    maxTextureSize: renderer.capabilities.maxTextureSize,
+    apply(cfg, compact) {
       renderer.toneMappingExposure = cfg.light.exposure.value;
       scene.environmentIntensity = cfg.light.envIntensity.value;
       applySky(cfg);
-      lighting.apply(cfg);
+      lighting.apply(cfg, compact);
       floor.apply(cfg);
     },
-    resize(width, height, cfg) {
-      const ratio = low ? cfg.render.lowPixelRatio.value : Math.min(window.devicePixelRatio, cfg.render.pixelRatioMax.value);
+    resize(width, height, cfg, compact) {
+      const maxRatio = compact ? Math.min(cfg.render.pixelRatioMax.value, cfg.render.touchPixelRatioMax.value) : cfg.render.pixelRatioMax.value;
+      const ratio = low ? cfg.render.lowPixelRatio.value : Math.min(window.devicePixelRatio, maxRatio);
       renderer.setPixelRatio(ratio);
       renderer.setSize(width, height, false);
     },

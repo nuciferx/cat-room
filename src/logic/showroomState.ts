@@ -11,10 +11,12 @@ export interface ShowroomState {
   gridOn: boolean;
   panelOpen: boolean;
   helpOn: boolean;
+  /** เลขคำขอสลับแบบล่าสุด (สลับแบบที่ต้องโหลดภาพ : คำขอเก่าที่เสร็จทีหลังถูกทิ้ง) */
+  viewRequest: number;
 }
 
-export function createState(clipIndex: number, viewIndex: number, gridOn: boolean): ShowroomState {
-  return { clipIndex, faceIndex: { '3d': 0, som3d: 0 }, viewIndex, paused: false, gridOn, panelOpen: false, helpOn: true };
+export function createState(clipIndex: number, viewIndex: number, gridOn: boolean, helpOn: boolean): ShowroomState {
+  return { clipIndex, faceIndex: { '3d': 0, som3d: 0 }, viewIndex, paused: false, gridOn, panelOpen: false, helpOn, viewRequest: 0 };
 }
 
 export function stepClip(s: ShowroomState, dir: number, count: number): void {

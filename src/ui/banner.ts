@@ -3,6 +3,7 @@ import { CSS } from '../constants/dom';
 
 export interface Banner {
   show(text: string, seconds?: number): void;
+  hide(): void;
 }
 
 export function createBanner(el: HTMLElement): Banner {
@@ -14,6 +15,10 @@ export function createBanner(el: HTMLElement): Banner {
       el.classList.remove(CSS.hidden);
       if (seconds === undefined) return;
       timer = window.setTimeout(() => el.classList.add(CSS.hidden), seconds * 1000);
+    },
+    hide() {
+      window.clearTimeout(timer);
+      el.classList.add(CSS.hidden);
     },
   };
 }

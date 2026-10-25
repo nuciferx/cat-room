@@ -39,7 +39,9 @@
     "clipBar": "Choose clip",
     "helpHint": "Press H to show/hide shortcuts",
     "faceBar": "Choose face",
-    "viewBar": "Choose cat"
+    "viewBar": "Choose cat",
+    "helpToggle": "?",
+    "helpToggleAria": "Show/hide shortcuts"
   },
   "help": {
     "title": "Shortcuts",
@@ -132,7 +134,8 @@
       "sprite": "2.5D sprite",
       "render": "Rendering",
       "fallback": "Fallback capsule",
-      "ui": "Messages"
+      "ui": "Messages",
+      "layout": "Mobile layout"
     },
     "param": {
       "light": {
@@ -189,7 +192,9 @@
         "padRotateDegPerS": "Pad rotate speed (deg/s)",
         "padZoomStepsPerS": "Pad zoom speed (steps/s)",
         "padDeadzone": "Pad deadzone",
-        "maxDtS": "Max frame time (s)"
+        "maxDtS": "Max frame time (s)",
+        "fitWidthM": "Width kept in view (m)",
+        "fitHeightM": "Height kept in view (m)"
       },
       "anim": {
         "crossfadeS": "Crossfade time (s)",
@@ -204,7 +209,9 @@
       },
       "render": {
         "pixelRatioMax": "Max pixel ratio",
-        "lowPixelRatio": "Low-quality pixel ratio"
+        "lowPixelRatio": "Low-quality pixel ratio",
+        "touchPixelRatioMax": "Max pixel ratio on touch screens",
+        "touchShadowMapSize": "Shadow map size on touch screens"
       },
       "fallback": {
         "heightM": "Capsule height (m)",
@@ -212,7 +219,8 @@
         "color": "Capsule color"
       },
       "ui": {
-        "toastS": "Toast duration (s)"
+        "toastS": "Toast duration (s)",
+        "warnS": "Warning display time (s)"
       },
       "sprite": {
         "sizeMul": "Sprite size (x)"
@@ -223,6 +231,10 @@
         "turnDegPerS": "Turn speed (deg/s)",
         "areaRadiusM": "Walkable radius (m)",
         "minInput": "Min input to start walking"
+      },
+      "layout": {
+        "compactMaxWidthPx": "Narrower than this uses the mobile layout (px)",
+        "insetMaxFrac": "Max screen fraction reserved for the button bar"
       }
     }
   },
@@ -231,6 +243,8 @@
     "clipMissing": "Clip \"{clip}\" not found in the model",
     "noWebgl": "WebGL is not available in this browser",
     "faceMissing": "No skin image for face {face} · build it with build_quad_meshy.py (bake.alts)",
-    "viewMissing": "No sprites for this view · Mui: sprite_render.py + mui_sprites.py · Som/Dam: tools/ai3d/sprite_from_sheet.py"
+    "viewMissing": "No sprites for this view · Mui: sprite_render.py + mui_sprites.py · Som/Dam: tools/ai3d/sprite_from_sheet.py",
+    "contextLost": "The device ran out of memory and drawing stopped · close other tabs and reload, or use low quality mode with {hint}",
+    "textureTooBig": "View {view}: image {sheets} is larger than this device supports (max {max} px), so it was skipped"
   }
 }

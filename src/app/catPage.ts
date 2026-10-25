@@ -1,5 +1,6 @@
 /** จุดเริ่มห้องโชว์แมว (cat.html) : ประกอบชั้นข้อมูล/ฉาก/UI/input เข้าด้วยกัน แล้วเดินลูปเรนเดอร์ */
 import '../ui/catPage.css';
+import { ACTION } from '../constants/actions';
 import { DEFAULT_CLIP, CLIP_NAMES } from '../constants/clips';
 import { DOM_ID } from '../constants/dom';
 import { FACE_SETS } from '../constants/faces';
@@ -17,9 +18,12 @@ import { createClipBar } from '../ui/clipBar';
 import { createFaceBar } from '../ui/faceBar';
 import { createViewBar } from '../ui/viewBar';
 import { createHelpPanel } from '../ui/helpPanel';
+import { bindHelpToggle } from '../ui/helpToggle';
+import { createLayoutMode, type LayoutMode } from '../ui/layoutMode';
 import { createTunePanel } from '../ui/tunePanel';
 import { loadActor } from './actorLoader';
 import { createBlinkDriver } from './blinkDriver';
+import { watchContextLoss } from './contextLoss';
 import { createWalkDriver, type WalkDriver } from './walkDriver';
 import type { ShowroomCtx } from './context';
 import { createRouter, faceModel, setClip, setFace, setView } from './catRouter';
@@ -55,7 +59,7 @@ interface Scene3d {
 }
 
 /** สร้าง renderer + กล้อง + แมว แล้วผูกการปรับตามขนาดจอ/ค่าจูน · null ถ้าเปิด WebGL ไม่ได้ */
-async function buildScene(query: PageQuery, cfg: CatConfig, locale: Locale, banner: Banner): Promise<Scene3d | null> {
+async function buildScene(query: PageQuery, cfg: CatConfig, locale: Locale, banner: Banner, layout: LayoutMode): Promise<Scene3d | null> {
   const canvas = el<HTMLCanvasElement>(DOM_ID.canvas);
   let stage: Stage;
   try {
@@ -65,15 +69,17 @@ async function buildScene(query: PageQuery, cfg: CatConfig, locale: Locale, bann
     banner.show(locale.t('error.noWebgl'));
     return null;
   }
+  watchContextLoss(canvas, locale, banner);
   const rig = createCameraRig(cfg);
-  const actor = await loadActor(cfg, locale, banner, rig.camera);
+  const actor = await loadActor({ cfg, locale, banner, camera: rig.camera, maxTexturePx: stage.maxTextureSize });
   stage.scene.add(actor.root);
   const resize = (): void => {
-    stage.resize(canvas.clientWidth, canvas.clientHeight, cfg);
-    rig.setAspect(canvas.clientWidth / canvas.clientHeight);
+    const { compact, barFrac } = layout.refresh();
+    stage.resize(canvas.clientWidth, canvas.clientHeight, cfg, compact);
+    rig.setLayout(canvas.clientWidth, canvas.clientHeight, barFrac);
   };
   const applyTune = (): void => {
-    stage.apply(cfg);
+    stage.apply(cfg, layout.refresh().compact);
     rig.refresh();
     actor.setSpeed(cfg.anim.speed.value);
     resize();
@@ -90,10 +96,13 @@ async function main(): Promise<void> {
   document.title = locale.t('app.title');
   const cfg = loadConfig();
   const banner = createBanner(el(DOM_ID.banner));
-  const scene = await buildScene(query, cfg, locale, banner);
+  const layout = createLayoutMode(cfg, el(DOM_ID.bar));
+  const compact = layout.refresh().compact;
+  const scene = await buildScene(query, cfg, locale, banner, layout);
   if (!scene) return;
 
-  const state = createState(CLIP_NAMES.indexOf(query.clip ?? DEFAULT_CLIP), VIEW_NAMES.indexOf(DEFAULT_VIEW), query.grid);
+  // จอสัมผัสไม่มีคีย์ H : ซ่อนป้ายช่วยเหลือไว้ก่อน มีปุ่มเล็กเปิด
+  const state = createState(CLIP_NAMES.indexOf(query.clip ?? DEFAULT_CLIP), VIEW_NAMES.indexOf(DEFAULT_VIEW), query.grid, !compact);
   const ctx: ShowroomCtx = {
     cfg, state, locale, banner, rig: scene.rig, actor: scene.actor, stage: scene.stage, frame: { dtS: 0 },
     clipBar: createClipBar(el(DOM_ID.clipBar), el(DOM_ID.current), locale.t, (i) => setClip(ctx, i)),
@@ -108,10 +117,13 @@ async function main(): Promise<void> {
   setClip(ctx, state.clipIndex);
   ctx.faceBar.setActive(state.faceIndex[DEFAULT_FACE_MODEL]);
   ctx.viewBar.setActive(state.viewIndex);
-  if (query.view) setView(ctx, VIEW_NAMES.indexOf(query.view));
+  ctx.help.setVisible(state.helpOn);
+  if (query.view) await setView(ctx, VIEW_NAMES.indexOf(query.view));
   if (query.face) setFace(ctx, FACE_SETS[faceModel(ctx)].names.indexOf(query.face));
   const walk = createWalkDriver(ctx);
-  const hub = createInputHub(el<HTMLCanvasElement>(DOM_ID.canvas), createRouter(ctx, walk.setMove));
+  const router = createRouter(ctx, walk.setMove);
+  bindHelpToggle(el<HTMLButtonElement>(DOM_ID.helpToggle), locale.t, () => router.action(ACTION.toggleHelp));
+  const hub = createInputHub(el<HTMLCanvasElement>(DOM_ID.canvas), router);
   startLoop(ctx, walk, hub.poll);
 }
 

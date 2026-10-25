@@ -8,6 +8,8 @@ export const DOM_ID = {
   current: 'clip-current',
   help: 'help',
   banner: 'banner',
+  helpToggle: 'help-toggle',
+  bar: 'bar',
   tune: 'tune-host',
 } as const;
 
@@ -17,4 +19,5 @@ export const CSS = {
   hidden: 'is-hidden',
   paused: 'is-paused',
   helpRow: 'help-row',
+  compact: 'is-compact',
 } as const;

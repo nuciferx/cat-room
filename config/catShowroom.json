@@ -54,7 +54,9 @@
     "padRotateDegPerS": { "value": 120, "min": 20, "max": 360, "step": 5 },
     "padZoomStepsPerS": { "value": 8, "min": 1, "max": 30, "step": 1 },
     "padDeadzone": { "value": 0.2, "min": 0, "max": 0.6, "step": 0.05 },
-    "maxDtS": { "value": 0.1, "min": 0.02, "max": 0.5, "step": 0.01 }
+    "maxDtS": { "value": 0.1, "min": 0.02, "max": 0.5, "step": 0.01 },
+    "fitWidthM": { "value": 0.8, "min": 0.3, "max": 2, "step": 0.05 },
+    "fitHeightM": { "value": 0.6, "min": 0.2, "max": 2, "step": 0.05 }
   },
   "anim": {
     "crossfadeS": { "value": 0.3, "min": 0, "max": 2, "step": 0.05 },
@@ -79,10 +81,17 @@
   },
   "render": {
     "pixelRatioMax": { "value": 2, "min": 1, "max": 3, "step": 0.25 },
-    "lowPixelRatio": { "value": 1, "min": 0.5, "max": 2, "step": 0.25 }
+    "lowPixelRatio": { "value": 1, "min": 0.5, "max": 2, "step": 0.25 },
+    "touchPixelRatioMax": { "value": 1.5, "min": 1, "max": 3, "step": 0.25 },
+    "touchShadowMapSize": { "value": 1024, "min": 512, "max": 4096, "step": 512 }
+  },
+  "layout": {
+    "compactMaxWidthPx": { "value": 700, "min": 320, "max": 1400, "step": 10 },
+    "insetMaxFrac": { "value": 0.35, "min": 0.05, "max": 0.6, "step": 0.01 }
   },
   "ui": {
-    "toastS": { "value": 3, "min": 1, "max": 10, "step": 0.5 }
+    "toastS": { "value": 3, "min": 1, "max": 10, "step": 0.5 },
+    "warnS": { "value": 8, "min": 2, "max": 30, "step": 1 }
   },
   "fallback": {
     "heightM": { "value": 0.41, "min": 0.1, "max": 1, "step": 0.01 },

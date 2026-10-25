@@ -6,6 +6,10 @@ export const QUERY = { clip: 'clip', face: 'face', view: 'view', quality: 'q', g
 export const QUALITY_LOW = 'low';
 /** ค่าของ ?grid= ที่แปลว่าปิด */
 export const GRID_OFF = '0';
+/** ข้อความแนะนำโหมดเบาที่ใส่ในคำเตือน (เช่น ?q=low) */
+export const LOW_QUALITY_HINT = `?${QUERY.quality}=${QUALITY_LOW}`;
+/** media query ของจอสัมผัส (นิ้วเป็นตัวชี้หลัก) */
+export const COARSE_POINTER_QUERY = '(pointer: coarse)';
 
 export const LANGS = ['th', 'en'] as const;
 export type Lang = (typeof LANGS)[number];

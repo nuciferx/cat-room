@@ -39,7 +39,9 @@
     "clipBar": "เลือกท่า",
     "helpHint": "กด H เพื่อดู/ซ่อนปุ่มลัด",
     "faceBar": "เลือกหน้า",
-    "viewBar": "เลือกแมว"
+    "viewBar": "เลือกแมว",
+    "helpToggle": "?",
+    "helpToggleAria": "ดู/ซ่อนปุ่มลัด"
   },
   "help": {
     "title": "ปุ่มลัด",
@@ -132,7 +134,8 @@
       "sprite": "ภาพ 2.5D",
       "render": "การเรนเดอร์",
       "fallback": "แมวแคปซูล (สำรอง)",
-      "ui": "ข้อความแจ้งเตือน"
+      "ui": "ข้อความแจ้งเตือน",
+      "layout": "การจัดวางบนมือถือ"
     },
     "param": {
       "light": {
@@ -189,7 +192,9 @@
         "padRotateDegPerS": "ความเร็วหมุนด้วยจอย (องศา/วินาที)",
         "padZoomStepsPerS": "ความเร็วซูมด้วยจอย (ก้าว/วินาที)",
         "padDeadzone": "โซนตายของจอย",
-        "maxDtS": "เวลาต่อเฟรมสูงสุด (วินาที)"
+        "maxDtS": "เวลาต่อเฟรมสูงสุด (วินาที)",
+        "fitWidthM": "ความกว้างที่ต้องเห็นเต็ม (ม.)",
+        "fitHeightM": "ความสูงที่ต้องเห็นเต็ม (ม.)"
       },
       "anim": {
         "crossfadeS": "เวลาเฟดข้ามท่า (วินาที)",
@@ -204,7 +209,9 @@
       },
       "render": {
         "pixelRatioMax": "pixel ratio สูงสุด",
-        "lowPixelRatio": "pixel ratio โหมดต่ำ"
+        "lowPixelRatio": "pixel ratio โหมดต่ำ",
+        "touchPixelRatioMax": "pixel ratio สูงสุดบนจอสัมผัส",
+        "touchShadowMapSize": "ขนาดแผนที่เงาบนจอสัมผัส"
       },
       "fallback": {
         "heightM": "ความสูงแคปซูล (ม.)",
@@ -212,7 +219,8 @@
         "color": "สีแคปซูล"
       },
       "ui": {
-        "toastS": "เวลาแสดงข้อความแจ้ง (วินาที)"
+        "toastS": "เวลาแสดงข้อความแจ้ง (วินาที)",
+        "warnS": "เวลาแสดงคำเตือน (วินาที)"
       },
       "sprite": {
         "sizeMul": "ขนาดภาพ (เท่า)"
@@ -223,6 +231,10 @@
         "turnDegPerS": "ความเร็วหันตัว (องศา/วินาที)",
         "areaRadiusM": "รัศมีที่เดินได้ (ม.)",
         "minInput": "แรงกดขั้นต่ำที่เริ่มเดิน"
+      },
+      "layout": {
+        "compactMaxWidthPx": "จอแคบกว่านี้ใช้หน้าตามือถือ (px)",
+        "insetMaxFrac": "สัดส่วนจอสูงสุดที่เผื่อให้แถบปุ่ม"
       }
     }
   },
@@ -231,6 +243,8 @@
     "clipMissing": "ไม่พบท่า \"{clip}\" ในไฟล์โมเดล",
     "noWebgl": "เบราว์เซอร์นี้เปิด WebGL ไม่ได้",
     "faceMissing": "ไม่มีภาพผิวของหน้า {face} · สร้างด้วย build_quad_meshy.py (bake.alts)",
-    "viewMissing": "ยังไม่มีภาพของแบบนี้ · มุ่ย : sprite_render.py + mui_sprites.py · เจ้าส้ม/เจ้าดำ : tools/ai3d/sprite_from_sheet.py"
+    "viewMissing": "ยังไม่มีภาพของแบบนี้ · มุ่ย : sprite_render.py + mui_sprites.py · เจ้าส้ม/เจ้าดำ : tools/ai3d/sprite_from_sheet.py",
+    "contextLost": "หน่วยความจำของเครื่องไม่พอ ภาพจึงหยุดทำงาน · ลองปิดแท็บอื่นแล้วเปิดใหม่ หรือใช้โหมดเบาด้วย {hint}",
+    "textureTooBig": "แบบ {view} : ภาพ {sheets} ใหญ่เกินที่เครื่องนี้รองรับ (สูงสุด {max} px) จึงข้ามภาพนี้"
   }
 }

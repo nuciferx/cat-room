@@ -1,7 +1,8 @@
 /** กล้อง perspective orbit รอบแมว : เก็บสถานะ yaw/pitch/ระยะ แล้วคำนวณตำแหน่งด้วย logic/orbit */
 import { PerspectiveCamera } from 'three';
 import type { CatConfig } from '../data/config';
-import { orbitPosition, type OrbitLimits, type OrbitState } from '../logic/orbit';
+import { fitDistance } from '../logic/cameraFit';
+import { clamp, orbitPosition, type OrbitLimits, type OrbitState } from '../logic/orbit';
 
 export interface CameraRig {
   camera: PerspectiveCamera;
@@ -13,7 +14,9 @@ export interface CameraRig {
   reset(): void;
   /** อ่าน fov/near/far/จุดมองใหม่จาก config แล้วจัดกล้อง (เรียกเมื่อแผง F1 ขยับ) */
   refresh(): void;
-  setAspect(aspect: number): void;
+  /** ขนาดจอ + สัดส่วนความสูงที่แถบปุ่มบังด้านล่าง : เลื่อนภาพให้แมวอยู่กลางพื้นที่ที่ไม่ถูกบัง
+   *  และดึงกล้องออกให้แมวทั้งตัวพอดี (ทำใหม่เมื่อจอพลิกตั้ง/นอน · ไม่ทับซูมของผู้ใช้ตอนปรับขนาดเล็กน้อย) */
+  setLayout(width: number, height: number, insetFrac: number): void;
   /** จุดมองตามแมว (พื้น x, z) */
   setTarget(x: number, z: number): void;
 }
@@ -23,10 +26,21 @@ export function createCameraRig(cfg: CatConfig): CameraRig {
   const startState = (): OrbitState => ({
     yawDeg: cfg.camera.yawStartDeg.value,
     pitchDeg: cfg.camera.pitchStartDeg.value,
-    dist: cfg.camera.distStartM.value,
+    dist: startDist(),
   });
 
   const target = { x: 0, z: 0 };
+  const layout = { aspect: 1, insetFrac: 0 };
+  let fittedPortrait: boolean | null = null;
+  /** ระยะเริ่มต้น : ตาม config แต่ไม่ใกล้กว่าที่แมวทั้งตัวจะพอดีจอ */
+  const startDist = (): number => {
+    const c = cfg.camera;
+    const fit = fitDistance({
+      vfovDeg: c.fovDeg.value, aspect: layout.aspect, insetFrac: layout.insetFrac,
+      widthM: c.fitWidthM.value, heightM: c.fitHeightM.value,
+    });
+    return clamp(Math.max(c.distStartM.value, fit), c.zoomMinM.value, c.zoomMaxM.value);
+  };
   const place = (): void => {
     const c = cfg.camera;
     const p = orbitPosition(rig.state, c.targetHeightM.value);
@@ -57,9 +71,17 @@ export function createCameraRig(cfg: CatConfig): CameraRig {
       camera.updateProjectionMatrix();
       place();
     },
-    setAspect(aspect) {
-      camera.aspect = aspect;
+    setLayout(width, height, insetFrac) {
+      layout.aspect = width / height;
+      layout.insetFrac = insetFrac;
+      camera.aspect = layout.aspect;
+      if (insetFrac > 0) camera.setViewOffset(width, height, 0, Math.round((insetFrac * height) / 2), width, height);
+      else camera.clearViewOffset();
       camera.updateProjectionMatrix();
+      const portrait = layout.aspect < 1;
+      if (portrait === fittedPortrait) return;
+      fittedPortrait = portrait;
+      rig.set({ ...rig.state, dist: startDist() });
     },
     setTarget(x, z) {
       target.x = x;
