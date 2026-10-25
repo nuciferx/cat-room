@@ -11,6 +11,15 @@ import numpy as np
 SIDES = ('L', 'R')
 
 
+def tail_bones(rig):
+    """กระดูกหางทั้งสาย tail1, tail2, ... (โครงเดิม = tail1-3 · cat2 มีมากกว่า)"""
+    return [n for n in rig.order if n.startswith('tail') and n[4:].isdigit()]
+
+
+def _with_side(names, rig, side):
+    return [n + '_' + side if n + '_' + side in rig.head else n for n in names]
+
+
 def seg_dist(p, a, b):
     ab = b - a
     t = np.clip((p - a) @ ab / max(ab @ ab, 1e-12), 0.0, 1.0)
@@ -47,7 +56,7 @@ def _legs(pos, rig, c, lab, todo):
 
 
 def _torso(pos, rig, c, lab, todo):
-    core = ['pelvis', 'spine', 'chest', 'neck1', 'neck2', 'head']
+    core = ['pelvis', 'spine', 'chest', 'neck1', 'neck2', 'head'] + c.get('coreExtra', [])  # bb : coreExtra = ข้อหลังที่เพิ่ม (cat2)
     # bb (แมว) : จุดสูงเกิน upperarmMaxY หรือหน้ากว่า upperarmMaxZ (แก้ม/ขนคอ) ห้ามเป็นต้นแขน/ต้นขา
     # ไม่งั้น clamp ตัดน้ำหนักขาทิ้งแล้วเติมกลับเป็นป้ายเดิม 100% → แก้มขยับตามขา (ไม่มีค่า = แบบ pp3 เดิม)
     no_leg = np.zeros(len(pos), dtype=bool)
@@ -71,7 +80,7 @@ def _tail(pos, rig, c, lab):
         above = tc['aboveY'] if np.isscalar(tc['aboveY']) else _interp(tc['aboveY'], pos[:, 2])
         behind |= (pos[:, 1] > above) & (pos[:, 2] < tc['aboveMaxZ'])
     m = behind & (np.abs(pos[:, 0]) < tc['halfWidthM'])
-    near, d = _nearest(pos[m], rig, ['tail1', 'tail2', 'tail3'])
+    near, d = _nearest(pos[m], rig, tail_bones(rig))
     ok = d < tc['radiusM']
     lab[np.nonzero(m)[0][ok]] = near[ok]
 
@@ -90,9 +99,33 @@ def _ear_mask(pos, rig, ec, lab, side):
     return ok
 
 
+def _scapula(pos, rig, c, lab):
+    """bb (cat2) : จุดใกล้แกนสะบัก (weights.scapula) ที่ป้ายเดิมอยู่ใน fromBones (ชื่อไม่มีข้าง = ใช้ข้างนั้น) → scapula_<ข้าง>"""
+    sc = c.get('scapula')
+    if not sc:
+        return
+    for side in SIDES:
+        bone = 'scapula_' + side
+        ok = np.isin(lab, _with_side(sc['fromBones'], rig, side)) & _side_mask(pos, side)
+        ok &= (seg_dist(pos, rig.head[bone], rig.tail[bone]) < sc['radiusM']) & (np.abs(pos[:, 0]) > sc['minAbsX'])
+        lab[ok] = bone
+
+
+def _ear_tip(pos, rig, lab):
+    """bb (cat2) : จุดของใบหูที่เลยหัวกระดูก eartip ไปทางปลาย → eartip_<ข้าง> (ไม่มีกระดูก = ไม่ทำ)"""
+    for side in SIDES:
+        tip = 'eartip_' + side
+        if tip not in rig.head:
+            continue
+        idx = np.nonzero(lab == 'ear_' + side)[0]
+        t = (pos[idx] - rig.head[tip]) @ rig.dir[tip]
+        lab[idx[t > 0]] = tip
+
+
 def _head_parts(pos, rig, c, lab, rigid):
     for side in SIDES:
         lab[_ear_mask(pos, rig, c['ear'], lab, side)] = 'ear_' + side
+    _ear_tip(pos, rig, lab)
     jc = c['jaw']
     jaw = (lab == 'head') & (pos[:, 2] > jc['fromZ']) & (pos[:, 1] < _interp(jc['lip'], pos[:, 2]))
     jaw &= np.abs(pos[:, 0]) < jc['halfWidthM']
@@ -113,6 +146,7 @@ def label(pos, rig, c):
     rigid = np.zeros(len(pos), dtype=bool)
     _legs(pos, rig, c, lab, todo)
     _torso(pos, rig, c, lab, todo)
+    _scapula(pos, rig, c, lab)
     _tail(pos, rig, c, lab)
     _head_parts(pos, rig, c, lab, rigid)
     return lab, rigid
@@ -195,17 +229,17 @@ def limit(w, count):
     return w / w.sum(1, keepdims=True)
 
 
-def _piece_labels(pos, rig, lab, piece):
+def _piece_labels(pos, rig, lab, piece, core_extra):
     """bb : ชิ้นหางแยก (quad_meshy_tailsplit) → ป้ายกระดูกหางที่ใกล้สุด · ตัวที่ติดป้ายหาง → ท่อนแกนกลางที่ใกล้สุด"""
-    tail = ['tail1', 'tail2', 'tail3']
+    tail = tail_bones(rig)
     lab[piece] = _nearest(pos[piece], rig, tail)[0]
     stray = ~piece & np.isin(lab, tail)
-    lab[stray] = _nearest(pos[stray], rig, ['pelvis', 'spine', 'chest'])[0]
+    lab[stray] = _nearest(pos[stray], rig, ['pelvis', 'spine', 'chest'] + core_extra)[0]
 
 
 def _piece_split(w, rig, lab, piece):
     """bb : ชิ้นหาง = กระดูกหางล้วน · ตัว = ห้ามกระดูกหาง (หางหมุนแล้วผิวตัวไม่ยืดตาม) · ว่าง = ป้ายเดิม"""
-    cols = [rig.order.index(n) for n in ('tail1', 'tail2', 'tail3')]
+    cols = [rig.order.index(n) for n in tail_bones(rig)]
     keep = np.zeros(w.shape[1], dtype=bool)
     keep[cols] = True
     w[np.ix_(piece, ~keep)] = 0.0
@@ -219,7 +253,7 @@ def compute(pos, edges, rig, c, piece=None):
     """น้ำหนักแบบแน่น (N, กระดูก ตามลำดับ rig.order) + รายงาน · piece = จุดของชิ้นหางแยก (None = ไม่มี)"""
     lab, rigid = label(pos, rig, c)
     if piece is not None:
-        _piece_labels(pos, rig, lab, piece)
+        _piece_labels(pos, rig, lab, piece, c.get('coreExtra', []))
     w = blend(pos, lab, rigid, rig, c)
     n_mane = mane(w, pos, lab, rig, c)
     w = diffuse(w, edges, c['smoothIters'], rigid)

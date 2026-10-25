@@ -112,8 +112,10 @@ def _shoot_clip(sc, co, pv, act, key, clip, out_dir):
 def main():
     argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
     key = argv[0] if argv else 'boar'
-    with open(os.path.join(HERE, 'quad_meshy_%s.json' % key), encoding='utf-8') as f:
+    path = key if key.endswith('.json') else os.path.join(HERE, 'quad_meshy_%s.json' % key)  # .json = path ไฟล์ค่าตรง ๆ
+    with open(path, encoding='utf-8') as f:
         cfg = json.load(f)
+    key = os.path.basename(key)[len('quad_meshy_'):-len('.json')] if key.endswith('.json') else key
     pv = cfg['preview']
     out_dir = os.path.join(ROOT, pv['dir'])
     os.makedirs(os.path.join(out_dir, 'parts'), exist_ok=True)

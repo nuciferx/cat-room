@@ -131,3 +131,23 @@
 - config ใหม่ : `camera.fitWidthM/fitHeightM` · `render.touchPixelRatioMax/touchShadowMapSize` · `layout.compactMaxWidthPx/insetMaxFrac` · `ui.warnS` · locales th/en ครบ (ข้อความ + ชื่อในแผง F1)
 - `tsc` + `npm run build` ผ่าน · ยังไม่ได้ลองในเบราว์เซอร์/มือถือจริง · ยังไม่ commit
 
+
+## 2026-10-25 — มุ่ย cat2 : กระดูกเพิ่ม + ท่านั่งใหม่ (opus · เจ้าของงานอนุมัติ)
+
+- โจทย์ : กระดูก 30 ชิ้นนั่ง/หมอบไม่เป็นแมว (`cat_dis/docs/03_cat_body_language.md` ท้ายไฟล์) → เพิ่มข้อหลัง หาง สะบัก ปลายหู · ท่านั่งตาม `F:/ai3d/in/cat/poses/som/sit.png` คอลัมน์ 4 · ห้ามเปลี่ยนผลของ cat/som/dog
+- **กระดูก 40 ชิ้น** (เดิม 30 · ชื่อเดิมครบ เพิ่มอย่างเดียว) : `loin` (เอว spine→pelvis) · `back1` (หลังหน้า spine→chest) · `tail4`–`tail7` (หาง 7 ข้อตามเส้นกลางพุ่มหาง) · `scapula_L/R` (สะบัก แม่ของ upperarm เลื่อนตำแหน่งได้) · `eartip_L/R` (ปลายหู) · หลัง = pelvis/loin/spine/back1/chest 5 ท่อน
+- ค่าใหม่ทั้งหมดอยู่ใน `tools/blender/quad_meshy_cat2.json` (คัดลอกจาก cat · ต้นทาง/ลดโพลี/อบภาพเท่าเดิม · เขียนแบบย่อบรรทัด 605 บรรทัด) · ผลไป `shots/tmp.temp/cat2/` แล้วคัดลอกไป `public/assets/models/cat2/`
+- โค้ด (ไม่มีค่า = แบบเดิมทุกอย่าง) :
+  - `quad_meshy_rig.py` : `rig.tail` เกิน 4 จุด → tail4… · `rig.more` (กระดูกเพิ่ม _L ส่องเป็น _R) · `rig.reparent` + เรียงแม่ก่อนลูก · `slideBones` · `poseSpread`
+  - `beasts_stance.py` : `to_pose(s, rig)` แบ่งการหมุนเดิมลงข้อใหม่ (`poseSpread` เช่น pelvisPitch → loin+pelvis · tail1-3 → tail1-7 · earBack → ear+eartip) · ค่า `b.<กระดูก>.<pitch|yaw|roll|dx|dy|dz>` หมุน/เลื่อนกระดูกใดก็ได้ (ไม่มีข้าง = ทั้งคู่) · `_aim` ชี้กระดูกไปที่จุดเป้าทีละข้อ (หางพาดพื้น)
+  - `beasts_rig.py` : `Pose.shift` (เลื่อนหัวกระดูกในกรอบแม่) · `beasts_blender.py` : slideBones มีคีย์ location
+  - `quad_meshy_weights.py` : หางตามจำนวนกระดูก (`tail_bones`) · `coreExtra` · `weights.scapula` (ป้ายสะบักจากจุดใกล้แกน) · ปลายหูแยกจากใบหูตามหัวกระดูก eartip · `quad_meshy_tailsplit.py` ใช้ `tail_bones` + `smoothFillNormals`
+  - `build_quad_meshy.py` / `quad_meshy_preview.py` : รับ path ไฟล์ค่า `.json` ตรง ๆ ได้ (ใช้สร้างลงที่ทดลองโดยไม่ทับไฟล์จริง)
+- **ท่านั่ง** : ตัวเชิด pitch −55 · หลังโค้งนูน chestPitch 30 (แบ่ง back1+chest) · ก้นแตะพื้น (`_reach offY`) · สะบักเลื่อนลง ~4.6 ซม. ให้ขาหน้าตรงถึงพื้น (`_reach b.scapula.dy`) · ขาหน้าชิด ใต้ไหล่ · เท้าหลังราบมาหน้ากางข้าง · หาง tail2-7 วนบนพื้นรอบสะโพกซ้าย (`_aim` วงรัศมี 16 ซม. สูง 6 ซม.) · ภาพเทียบ `shots/tmp.temp/cat2/sit_vs_ref.png`
+  - ขามุ่ยสั้นกว่าภาพอ้างอิงมาก : ไหล่สูงได้ ~15.5 ซม. → ตัวเอนได้ ~25° (ภาพ ~60°) · ตัวตั้งกว่านี้ขาหน้าลอย (ลองแล้ว pitch −65)
+  - ผิวปิดรูก้น (เห็นเมื่อหางลง) : capFrac 0.2 เป็นหลุมมืด · −0.5 นูนจนโผล่ระหว่างหางกับหลังตอนยืน → ใช้ 0.0 + `smoothFillNormals`
+- **lie** : หางเดิมกระจาย 7 ข้อแล้วยื่นยาวไปหลัง → ใช้ `_aim` วางหางพื้นข้างสะโพกซ้าย (ตัด tail1-3Pitch/tailYaw) · lie_down ผ่านกลางทางหางเหวี่ยงออกข้าง · ลองบิดเอว (b.loin.yaw) แล้วไม่ใช้
+- คลิปอื่นใช้ค่าเดิม (spread ลงข้อใหม่) · wag ใส่คีย์ tail1-7 · ภาพเทียบต่อคลิป เดิม|ใหม่ `shots/tmp.temp/cat2/cmp_<คลิป>.png` · ภาพทุกคลิป `cat2_preview.png`
+- ตรวจ : `node tools/blender/quad_meshy_check.mjs cat2` ผ่าน (40 joints · 11 คลิป · 9,986 สามเหลี่ยม · 1,847 KB) · build cat + som ด้วยไฟล์ค่าสำเนาที่ส่งออกไป scratchpad ก่อน/หลังแก้โค้ด : report.json เท่ากันทุกค่า ยกเว้นขนาดไบต์ภาพอบ (อบซ้ำโค้ดเดิมก็ต่างเท่านี้) · fk ทุกคลิปทุกเฟรมของ cat/som/dog/somtest เท่ากันเป๊ะ (dog ไม่มีไฟล์ต้นทาง build ไม่ได้)
+- ห้องโชว์ : แบบ `mui3d2` (`cat.html?view=mui3d2`) · `constants/views.ts` `app.ts` (`MUI2_GLB_URL`) `faces.ts` (หน้าชุดของ cat2) `actorLoader.ts` `showroomState.ts` · locales th/en · `docs/ASSETS.md` · `tsc` ผ่าน · ยังไม่ได้เปิดในเบราว์เซอร์ · ยังไม่ commit
+- เหลือ : sniff/wag meshMinY −5 ซม. (หางพุ่มทะลุพื้น เท่าของเดิม) · sit meshMinY −6 ซม. (ขนพุ่มหางแฉกจมพื้นบางจุด) · ขนแฉกรอบโคนหางยังเห็นตอนหางลง · ไม่ได้ใช้สะบักในคลิปเดิน/วิ่ง · หูยังไม่มีท่าแยกอารมณ์

@@ -79,6 +79,7 @@ class Pose:
     def __init__(self):
         self.off = np.zeros(3)
         self.local, self.scale, self.legs, self.err = {}, {}, {}, {}
+        self.shift = {}  # bb : เลื่อนหัวกระดูกในกรอบของแม่ (ม.) เฉพาะกระดูก slideBones เช่นสะบัก
         self.floor = 0.0  # ข้อกีบต่ำสุดได้แค่ระดับนี้ (กันขาจมพื้นตอนล้ม) · ว่ายน้ำตั้งต่ำมากเพื่อปิด
 
 
@@ -129,6 +130,8 @@ def fk(rig, pose):
             continue
         d_par, p_par = out[par]
         p = p_par + d_par @ (rig.head[name] - rig.head[par])
+        if name in pose.shift:
+            p = p + d_par @ pose.shift[name]
         leg = rig.leg_of.get(name)
         if leg is None:
             out[name] = (_local(pose, name, d_par), p)

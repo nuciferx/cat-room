@@ -15,7 +15,7 @@ def bake_all(animal, arm, ctx, rest_bl, fps):
         c = dict(animal['clips'][name], seconds=frames / fps)  # ความยาวจริง = จำนวนเฟรมเต็ม (ท่าวนต่อกันสนิท)
         fn = CLIP_TYPES[c.get('type', 'still')]
         act, poses = xb.bake_clip(arm, ctx.rig, rest_bl, name, frames,
-                                  lambda t, c=c, fn=fn: to_pose(fn(c, ctx, t)), fps, c.get('only'))
+                                  lambda t, c=c, fn=fn: to_pose(fn(c, ctx, t), ctx.rig), fps, c.get('only'))
         out[name] = (act, frames, c, poses)
     return out
 

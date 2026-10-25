@@ -16,7 +16,6 @@ import quad_meshy_weights as qw
 PIECE = 'tail_piece'
 # หน้าที่สร้างใหม่ (ปิดรูก้น โคนหางที่ยื่นเข้าตัว ปิดปากหาง) อยู่ในตัว อบภาพแล้วรังสีไม่โดนผิว (ดำ) → quad_meshy_bake ทาสีขนเฉลี่ย
 FILL = 'tail_fill'
-TAIL_BONES = ('tail1', 'tail2', 'tail3')
 
 
 def _tail_faces(bm, is_tail, need):
@@ -98,7 +97,7 @@ def split(obj, cfg):
     _, rig = qrig.build(cfg['rig'])
     pos = qlod.vertex_pos(obj)
     lab, _ = qw.label(pos, rig, cfg['weights'])
-    is_tail = np.isin(lab, TAIL_BONES)
+    is_tail = np.isin(lab, qw.tail_bones(rig))
     for box in tc.get('addBoxes', []):  # ลำหางด้านหลังที่ป้ายน้ำหนักนับเป็นตัว
         is_tail |= np.all((pos >= np.asarray(box['min'])) & (pos <= np.asarray(box['max'])), axis=1)
     bm = bmesh.new()
@@ -129,8 +128,18 @@ def split(obj, cfg):
     return rep
 
 
-def flat_fill_normals(obj):
-    """bb : หน้าปิดรู/โคนหางที่สร้างใหม่ → normal เงา = normal ของหน้าเอง
+def _fill_vertex_normals(me, flag):
+    """ค่าเฉลี่ย normal ของหน้าเติมรอบแต่ละจุด (เงาเรียบภายในแผ่นปิดรู)"""
+    acc = {}
+    for poly in me.polygons:
+        if flag[poly.index]:
+            for vi in poly.vertices:
+                acc[vi] = acc.get(vi, np.zeros(3)) + np.array(poly.normal)
+    return {vi: tuple(n / max(np.linalg.norm(n), 1e-9)) for vi, n in acc.items()}
+
+
+def flat_fill_normals(obj, smooth=False):
+    """bb : หน้าปิดรู/โคนหางที่สร้างใหม่ → normal เงา = normal ของหน้าเอง (smooth = เฉลี่ยรอบจุดในแผ่นเติม · cat2 แผ่นปิดก้นโค้งนูน)
     (โอน normal จากเมชละเอียดแล้วได้ทิศของผิวหางที่ทับอยู่ → แผ่นปิดรูมืดดำ) · คืนจำนวนหน้า"""
     me = obj.data
     attr = me.attributes.get(FILL)
@@ -139,10 +148,11 @@ def flat_fill_normals(obj):
     flag = np.empty(len(me.polygons), dtype=np.int32)
     attr.data.foreach_get('value', flag)
     normals = [tuple(n.vector) for n in me.corner_normals]
+    vn = _fill_vertex_normals(me, flag) if smooth else {}
     for poly in me.polygons:
         if flag[poly.index]:
             for li in poly.loop_indices:
-                normals[li] = tuple(poly.normal)
+                normals[li] = vn.get(me.loops[li].vertex_index, tuple(poly.normal))
     me.normals_split_custom_set(normals)
     return int(flag.sum())
 

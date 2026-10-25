@@ -21,6 +21,11 @@ export const FACE_SETS: Readonly<Record<ModelViewName, FaceSet>> = {
     textures: { relaxed: 'assets/models/cat/cat_relaxed.jpg' },
     blinkUrl: 'assets/models/cat/cat_blink.jpg',
   },
+  mui3d2: {
+    names: ['grumpy', 'relaxed'],
+    textures: { relaxed: 'assets/models/cat2/cat2_relaxed.jpg' },
+    blinkUrl: 'assets/models/cat2/cat2_blink.jpg',
+  },
   som3d: {
     names: ['normal', 'smile', 'happy', 'sad', 'wink', 'sleepy'],
     textures: {

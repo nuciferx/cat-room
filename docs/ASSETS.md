@@ -20,6 +20,7 @@
 |---|---|---|---|
 | `public/assets/models/som/som.glb` + `som_blink.jpg` `som_{smile,happy,sad,wink,sleepy}.jpg` (เจ้าส้ม 9.8k สามเหลี่ยม · 11 คลิป · ภาพหน้า 6 แบบ) | `F:/ai3d/in/cat/som/ref3d_sheet.png` (ยืน 4 ทิศ + ช่องหน้า 6 แบบ ตัดด้วย `sheet_crop.py` → `F:/ai3d/in/cat/som/faces/` ไม่เข้า git) → Hunyuan3D 2mv → `mesh_dewhisker` `project_views` `cat_touchup --cfg som_touchup.json` → `build_quad_meshy.py -- som` | เหมือน cat.glb (Hunyuan 2.0 Community) · ภาพต้นทาง AI ของเจ้าของงาน | 2026-10-25 |
 | `public/assets/models/cat/cat.glb` (10k สามเหลี่ยม · 10 คลิป) | ภาพ GPT ของเจ้าของงาน → Hunyuan3D 2mv ในเครื่อง → `views_depink` `project_views` `cat_touchup --atlas` → `build_quad_meshy.py -- cat` · ท่าสร้างด้วยสคริปต์ | Meshy แผนเสียเงิน : ผู้ใช้เป็นเจ้าของ · Hunyuan 2.0 Community : ห้าม EU/UK/เกาหลีใต้ ผู้ใช้ >1 ล้าน/เดือนต้องขอ Tencent · **รอเจ้าของงานตอบว่าขายหรือไม่** | — |
+| `public/assets/models/cat2/cat2.glb` + `cat2_blink.jpg` `cat2_relaxed.jpg` (มุ่ยกระดูกใหม่ 40 ชิ้น · 11 คลิป · ท่านั่งใหม่) | ต้นทางเดียวกับ cat.glb → `build_quad_meshy.py -- cat2` (`quad_meshy_cat2.json`) · ท่านั่งดูมุมข้อต่อจาก `F:/ai3d/in/cat/poses/som/sit.png` (ภาพอ้างอิงท่า ไม่เข้า git · ไม่ได้ใช้ภาพในโมเดล) | ตามสิทธิ์ของ cat.glb | 2026-10-25 |
 
 ## สคริปต์ที่ยกมาจากโปรเจกต์อื่นของเจ้าของงาน
 

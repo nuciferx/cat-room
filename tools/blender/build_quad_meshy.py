@@ -42,8 +42,17 @@ def full(path):
     return os.path.join(ROOT, path)
 
 
+def cfg_path(key):
+    """ชื่อตัว → tools/blender/quad_meshy_<ตัว>.json · ลงท้าย .json = path ไฟล์ค่าตรง ๆ (ใช้สร้างลงที่ทดลองโดยไม่แตะไฟล์ค่าจริง)"""
+    return key if key.endswith('.json') else os.path.join(HERE, 'quad_meshy_%s.json' % key)
+
+
+def cfg_key(key):
+    return os.path.basename(key)[len('quad_meshy_'):-len('.json')] if key.endswith('.json') else key
+
+
 def load_cfg(key):
-    with open(os.path.join(HERE, 'quad_meshy_%s.json' % key), encoding='utf-8') as f:
+    with open(cfg_path(key), encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -81,7 +90,7 @@ def mesh_stage(cfg, key, report):
         report['tailSplit'] = qtail.split(mesh, cfg)
         qlod.transfer_normals(mesh, high)
         if cfg['tailSplit'].get('flatFillNormals'):
-            report['tailSplit']['flatFillFaces'] = qtail.flat_fill_normals(mesh)
+            report['tailSplit']['flatFillFaces'] = qtail.flat_fill_normals(mesh, cfg['tailSplit'].get('smoothFillNormals', False))
         log(key, 'แยกชิ้นหาง', report['tailSplit'])
     log(key, 'ลดโพลีเหลือ', report['lod']['tris'], 'สามเหลี่ยม · อบภาพ')
     images, report['bake'], base_raw = qbake.bake(mesh, high, src, cfg['bake'], full(cfg['workDir']), key, flat_path)
@@ -124,11 +133,11 @@ def export_glb(path, objs, frame_step):
                               export_cameras=False, export_lights=False)
 
 
-def build(key):
-    cfg = load_cfg(key)
+def build(arg):
+    cfg, key = load_cfg(arg), cfg_key(arg)
     os.makedirs(full(cfg['workDir']), exist_ok=True)
     bb.reset_scene(cfg['fps'])
-    report = {'animal': key, 'config': 'tools/blender/quad_meshy_%s.json' % key}
+    report = {'animal': key, 'config': arg if arg.endswith('.json') else 'tools/blender/quad_meshy_%s.json' % key}
     mesh = mesh_stage(cfg, key, report)
     arm, ctx = rig_stage(cfg, key, mesh, report)
     clips = qclips.bake_all(cfg, arm, ctx, bb.rest_matrices(arm), cfg['fps'])

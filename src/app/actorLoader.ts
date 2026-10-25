@@ -1,7 +1,7 @@
 /** โหลดแมวจาก glb · ล้มเหลว → แคปซูลขนาดแมว + ข้อความบอกคำสั่งสร้างโมเดล
  *  ตอนเปิดหน้าโหลดแค่มุ่ย 3D · แบบอื่น (ภาพ 2.5D · เจ้าส้ม 3D) โหลดเมื่อสลับไปครั้งแรก (DualActor.ensureView)
  *  แบบที่โหลดไม่ได้ : ที่นี่แจ้งเตือนเอง (ผู้เรียกไม่ต้องแจ้งซ้ำ) */
-import { BUILD_CAT_CMD, CAT_GLB_URL, SOM_GLB_URL } from '../constants/app';
+import { BUILD_CAT_CMD, CAT_GLB_URL, MUI2_GLB_URL, SOM_GLB_URL } from '../constants/app';
 import { FACE_SETS, type FaceSet } from '../constants/faces';
 import { SPRITE_DIRS, type ViewName } from '../constants/views';
 import { loadFaceSkins } from '../data/blinkLoader';
@@ -72,6 +72,7 @@ async function loadSprite(env: LoaderEnv, view: ViewName, dir: string): Promise<
 
 function loadView(env: LoaderEnv, view: ViewName): Promise<CatActor | null> {
   if (view === '3d') return Promise.resolve(null);
+  if (view === 'mui3d2') return loadExtraModel(env, MUI2_GLB_URL, FACE_SETS.mui3d2);
   if (view === 'som3d') return loadExtraModel(env, SOM_GLB_URL, FACE_SETS.som3d);
   return loadSprite(env, view, SPRITE_DIRS[view]);
 }

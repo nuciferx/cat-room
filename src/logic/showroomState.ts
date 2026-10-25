@@ -16,7 +16,7 @@ export interface ShowroomState {
 }
 
 export function createState(clipIndex: number, viewIndex: number, gridOn: boolean, helpOn: boolean): ShowroomState {
-  return { clipIndex, faceIndex: { '3d': 0, som3d: 0 }, viewIndex, paused: false, gridOn, panelOpen: false, helpOn, viewRequest: 0 };
+  return { clipIndex, faceIndex: { '3d': 0, mui3d2: 0, som3d: 0 }, viewIndex, paused: false, gridOn, panelOpen: false, helpOn, viewRequest: 0 };
 }
 
 export function stepClip(s: ShowroomState, dir: number, count: number): void {

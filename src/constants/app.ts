@@ -19,6 +19,8 @@ export const DEFAULT_LANG: Lang = 'th';
 export const CAT_GLB_URL = 'assets/models/cat/cat.glb';
 /** เจ้าส้ม 3D (build_quad_meshy.py -- som) · ไม่มีไฟล์ = ปุ่มนั้นแจ้งเตือน */
 export const SOM_GLB_URL = 'assets/models/som/som.glb';
+/** มุ่ย 3D กระดูกใหม่ 40 ชิ้น (build_quad_meshy.py -- cat2 แล้วคัดลอกจาก shots/tmp.temp/cat2/) · ไม่มีไฟล์ = ปุ่มนั้นแจ้งเตือน */
+export const MUI2_GLB_URL = 'assets/models/cat2/cat2.glb';
 /** ไฟล์ข้อมูลในโฟลเดอร์ภาพ 2.5D (โฟลเดอร์ต่อแบบ : constants/views SPRITE_DIRS) · แผ่นรวมชื่อ <ท่า>_sheet.png */
 export const SPRITE_META = 'sprites.json';
 

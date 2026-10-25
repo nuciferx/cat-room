@@ -30,7 +30,7 @@ def make_materials(name, mcfg, rgb, out_png):
 
 
 def _key_bone(pb, m, last, is_root, f):
-    """คีย์กระดูกเดียว : quaternion ซีกเดียวกับเฟรมก่อน · root มีตำแหน่ง · กระดูกใน SCALED_BONES มีขนาด"""
+    """คีย์กระดูกเดียว : quaternion ซีกเดียวกับเฟรมก่อน · root (และ slideBones ของ bb) มีตำแหน่ง · กระดูกใน SCALED_BONES มีขนาด"""
     pb.rotation_mode = 'QUATERNION'
     loc, q, sca = Matrix(m.tolist()).decompose()
     if pb.name in last and last[pb.name].dot(q) < 0:
@@ -59,7 +59,8 @@ def bake_clip(arm_obj, rig, rest_bl, name, frames, pose_at, fps, only=None):
         basis = basis_matrices(rig, fk(rig, pose), rest_bl)
         poses.append(pose)
         for bname in (only or rig.order):
-            _key_bone(arm_obj.pose.bones[bname], basis[bname], last, rig.parent[bname] is None, f)
+            moves = rig.parent[bname] is None or bname in getattr(rig, 'slide', ())  # bb : slideBones มีคีย์ตำแหน่ง
+            _key_bone(arm_obj.pose.bones[bname], basis[bname], last, moves, f)
     return act, poses
 
 

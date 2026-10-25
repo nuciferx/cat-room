@@ -1,10 +1,10 @@
-/** แบบของแมวในห้องโชว์ : มุ่ย 3D (cat.glb) · มุ่ย 2.5D · เจ้าส้ม 2.5D · เจ้าส้ม 3D (som.glb) · เจ้าดำ 2.5D (ภาพวาด 8 ทิศ เดินได้)
+/** แบบของแมวในห้องโชว์ : มุ่ย 3D (cat.glb) · มุ่ย 3D กระดูกใหม่ (cat2.glb) · มุ่ย 2.5D · เจ้าส้ม 2.5D · เจ้าส้ม 3D (som.glb) · เจ้าดำ 2.5D (ภาพวาด 8 ทิศ เดินได้)
  *  ลำดับ = ลำดับปุ่ม · ชื่อภาษาคนอยู่ที่ locales `view.<ชื่อ>` */
-export const VIEW_NAMES = ['3d', '25d', 'som', 'som3d', 'dam'] as const;
+export const VIEW_NAMES = ['3d', 'mui3d2', '25d', 'som', 'som3d', 'dam'] as const;
 
 export type ViewName = (typeof VIEW_NAMES)[number];
 /** แบบที่เป็นโมเดล glb (ที่เหลือเป็นภาพ 2.5D) */
-export const MODEL_VIEWS = ['3d', 'som3d'] as const;
+export const MODEL_VIEWS = ['3d', 'mui3d2', 'som3d'] as const;
 export type ModelViewName = (typeof MODEL_VIEWS)[number];
 export type SpriteViewName = Exclude<ViewName, ModelViewName>;
 
